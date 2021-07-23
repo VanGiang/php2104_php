@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-        echo 'xin chao';
+        echo 'Nguyễn Đình Hiếu';
     ?>
 </body>
 </html>
