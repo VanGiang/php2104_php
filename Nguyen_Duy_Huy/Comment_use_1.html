@@ -25,3 +25,15 @@ Commit:
 - git commit -m "<commit_content>"
 - git commit --amend // Bị quên file
 - git commit --amend --no-edit // bị quên file và ko cần sửa nội dung commit
+
+Add <command> commit:
+- git fetch upstream pull/16/head:testGit // keo nhanh nguoi khac ve, trc do check out ve main
+- git add -u
+- git commit --amend // Bị quên file
+- git commit --amend --no-edit // bị quên file và ko cần sửa nội dung commit
+- git push <remote_name> <branch_name> -f
+19:51
+Unread Messages
+- git reset <hash_commit> // reset đến commit <hash_commit> và giữ lại code
+- git reset <hash_commit> --hard // reset đến commit <hash_commit> và KO giữ lại code
+
