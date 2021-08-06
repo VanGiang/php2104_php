@@ -43,3 +43,4 @@
   	<input type="text" style=" cursor: progress;" value="<?php echo $format_number_output ?>" name="so_tien_da_quy_doi" 
    		size="20"><br/><br/>
   	<a href="index.php">Thực Hiện Phép Quy Đổi Khác</a>
+  	
