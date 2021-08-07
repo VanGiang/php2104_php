@@ -17,7 +17,6 @@
             function __construct ($money)
             {
                 $this->money = $money;
-
             }
         }
 
