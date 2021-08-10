@@ -1,9 +1,9 @@
 <?php
 	 //Connect server 
-	$servername="localhost";
-	$username="leduong";
-	$password="Leduong.4dec";
-	$dbname="php2104";
+	$servername = 'localhost';
+	$username = 'leduong';
+	$password = 'Leduong.4dec';
+	$dbname = 'php2104';
 	$conn = new mysqli($servername, $username, $password,$dbname);
 
 	// Check connection
@@ -14,7 +14,11 @@
 
 
 	// Post data
-	$first_name=$last_name=$address=$email=$phone='';
+	$first_name = '';
+	$last_name = '';
+	$address = '';
+	$email = '';
+	$phone = '';
 	if($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 		$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : " ";
@@ -31,6 +35,7 @@
 		echo '<script type="text/JavaScript"> 
 		alert("Vui lòng nhập dữ liệu");
 		</script>';
+
 	}
 	else
 	{
@@ -38,12 +43,14 @@
 		VALUES ('$first_name', '$last_name', '$address', '$email', '$phone')";
 	}
 
-	if ($conn->query($data) === TRUE) 
+	if ($conn->query($data) === true) 
 	{
 	  echo '<script type="text/JavaScript"> 
 	  alert("Thêm dữ liệu thành công");
 	  </script>';
-	} else {
+	} 
+	else 
+	{
 	  echo "Error: " . $data. "<br>" . $conn->error;
 	}
 
