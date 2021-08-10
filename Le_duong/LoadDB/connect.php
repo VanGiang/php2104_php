@@ -28,7 +28,9 @@
 	// Insert data
 	if($first_name == "" || $last_name == "" || $address == "" || $email == "" || $phone == "")
 	{
-		echo "Vui lòng nhập dữ liệu";
+		echo '<script type="text/JavaScript"> 
+		alert("Vui lòng nhập dữ liệu");
+		</script>';
 	}
 	else
 	{
@@ -38,7 +40,9 @@
 
 	if ($conn->query($data) === TRUE) 
 	{
-	  echo "Thêm người dùng mới thành công";
+	  echo '<script type="text/JavaScript"> 
+	  alert("Thêm dữ liệu thành công");
+	  </script>';
 	} else {
 	  echo "Error: " . $data. "<br>" . $conn->error;
 	}
