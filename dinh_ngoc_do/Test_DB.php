@@ -8,51 +8,45 @@
 </head>
 <body>
     <?php 
-    $servername = "localhost";
-    $username = "root";
-    $password = "01633830654";
-    $dbname = "dinhngocdo";
-
-    //Create connection 
-    $coon = new mysqli($servername, $username, $password, $dbname);
-
-    //Check connection
-    if ($coon->connect_error) {
-        die ("Connection failed: " . $coon->connect_error);
-    }
-
-    //Post data
-    $id = '';
-    $firstName = '';
-    $lastName = '';
-    $sex = '';
-    $age = '';
-    $email = '';
-
+    
     if (isset($_POST["register"])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "01633830654";
+        $dbname = "dinhngocdo";
+        
+        //Create connection 
+        $coon = new mysqli($servername, $username, $password, $dbname);
+        
+        //Check connection
+        if ($coon->connect_error) {
+            die ("Connection failed: " . $coon->connect_error);
+        }
+
+        //Post Data
         $firstName = isset($_POST["firstname"]) ?  $_POST["firstname"] : " ";
         $lastName = isset($_POST["lastname"]) ?  $_POST["lastname"] : " ";
         $sex = isset($_POST["gender"]) ?  $_POST["gender"] : " ";
         $age = isset($_POST["age"]) ?  $_POST["age"] : " ";
         $email = isset($_POST["email"]) ?  $_POST["email"] : " ";
 
-    }
+        //Insert Register Data
+        if ($firstName == "" || $lastName == "" || $sex == "" || $age == "" || $email == "") {
+            echo '<script> alert("Vui lòng điền đầy đủ thông tin"); </script>';
+        } else {
+            $sql = "INSERT INTO do_test1 (first_name, last_name, sex, age, email)
+            VALUES ('$firstName', '$lastName', '$sex', '$age', '$email')";
+            /* var_dump($sql);die; */
+        }
 
-    //Insert Register Data
-    if ($firstName == "" || $lastName == "" || $sex == "" || $age == "" || $email == "") {
-        echo '<script> alert("Vui lòng điền đầy đủ thông tin"); </script>';
-    } else {
-        $sql = "INSERT INTO do_test1 (id, first_name, last_name, sex, age, email)
-        VALUE ('', $firstName, $lastName, $sex, $age, $email)";
+        if ($coon->query($sql) === TRUE) {
+            echo '<script> alert("Register Successfuly"); </script>';
+        } else {
+            echo "Error: " . $sql . "<br>" . $coon->error;
+        }
+    
+        $coon->close();
     }
-
-    if ($coon->query($sql) === TRUE) {
-        echo '<script> alert("Register Successfuly"); </script>';
-    } else {
-        echo "Error: " . $sql . "<br>" . $coon->error;
-    }
-
-    $coon->close();
     ?>
     <form action="Test_DB.php" method="POST">
         <div class="field">
