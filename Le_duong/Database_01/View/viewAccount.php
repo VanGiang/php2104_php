@@ -35,7 +35,19 @@
 	{
 	$order = "desc";
 	}
+	if($_GET['orderby'] == "firstName" && $_GET['order'] == "asc")
+	{
+	$order = "desc";
+	}
 	if($_GET['orderby'] == "email" && $_GET['order'] == "asc")
+	{
+		$order = "desc";
+	}
+	if($_GET['orderby'] == "phone" && $_GET['order'] == "asc")
+	{
+	$order = "desc";
+	}
+	if($_GET['orderby'] == "address" && $_GET['order'] == "asc")
 	{
 	$order = "desc";
 	}
@@ -90,7 +102,10 @@
 							<?php 
 							echo "<a class='dropdown-item' href='?orderby=id&order=".$order."'>Id</a>";
 							echo "<a class='dropdown-item' href='?orderby=lastName&order=".$order."'>Last Name</a>";
+							echo "<a class='dropdown-item' href='?orderby=firstName&order=".$order."'>First Name</a>";
 							echo "<a class='dropdown-item' href='?orderby=email&order=".$order."'>Email</a>";
+							echo "<a class='dropdown-item' href='?orderby=phone&order=".$order."'>Phone</a>";
+							echo "<a class='dropdown-item' href='?orderby=address&order=".$order."'>Address</a>";
 							?>
 							
 						</div>
