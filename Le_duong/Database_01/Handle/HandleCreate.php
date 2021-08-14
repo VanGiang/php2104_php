@@ -31,22 +31,18 @@ if ($last_name == "" || $first_name == "" || $email == "" || $address == "" || $
 {
      echo "Dữ liệu không được để chống";
      
-} 
-else
-{
-	$sql="INSERT INTO accounts (last_name , first_name , email , address , phone , gender , username) 
-VALUES ('$last_name' , '$first_name' , '$email' , '$address' , '$phone' , '$gender' , '$user_name')";
+} else {
+	$sql = "INSERT INTO accounts (last_name , first_name , email , address , phone , gender , username) 
+	VALUES ('$last_name' , '$first_name' , '$email' , '$address' , '$phone' , '$gender' , '$user_name')";
 	// header('Location:../View/viewAccount.php');
 }
 
 // Check data post success / failed
 // Kiểm tra dữ liệu post lên db thành công hay thất bại
-if ($conn->query($sql) === true) 
+if ($conn->query($sql)) 
 {
 	echo "<script> alert('New record created successfully')</script>";
-} 
-else 
-{
+} else {
 	echo "Error:";
 }
  
