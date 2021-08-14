@@ -1,9 +1,12 @@
 <?php
 include_once('connect.php');
-
+$search = '';
 if(isset($_POST['btn_search'])) {
     $search = $_POST['search'];
     $sql = "select * from sinh_vien where sinh_vien.ho_ten like '%$search%';";
+} else if (isset($_POST['sort'])) {
+    $sort = $_POST['sort'];
+    $sql = "SELECT * FROM sinh_vien ORDER BY ho_ten;";
 } else {
     $sql = "SELECT * FROM sinh_vien";
 }
@@ -26,13 +29,21 @@ $product = mysqli_query($conn,$sql);
             display: flex;
         }
 
+        button.sort {
+            margin-left: 23px;
+        }
+
         button.btnUpdate {
             background: antiquewhite;
-            margin-left: 785px;
+            margin-left: 692px;
         }
 
         input[type="text"] {
             margin-left: 13px;
+        }
+
+        a {
+            color: black;
         }
 
         table {
@@ -58,7 +69,10 @@ $product = mysqli_query($conn,$sql);
     <div class="search">
         <form method="post">
             <button name="btn_search" type="submit">Tìm Kiếm</button>
-            <input type="text" name="search">
+            <input type="text" name="search" <?php echo $search ?> >
+        </form>
+        <form method="post">
+            <button class="sort" name="sort" type="submit">sắp xếp</button>
         </form>
         <button class="btnUpdate" name="update"> <a href="update.php"> Update </a></button>
     </div>
