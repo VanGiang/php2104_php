@@ -1,0 +1,33 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+form {
+    width: 500px;
+    height: 350px;
+
+}
+
+input {
+    width: 300px;
+    float: right;
+}
+
+label {
+    width: 440px;
+    height: 50px;
+    float: left;
+    text-align: center;
+    margin: 5px;
+}
+
+#btn,button,#update {
+    width: 100px;
+    height: 30px;
+}
+
+#update {
+    float: none;
+}
+
