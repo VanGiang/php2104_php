@@ -10,7 +10,7 @@ require_once 'connect.php';
         if (isset($_POST['add'])) {    
             $sql = "INSERT INTO persons (last_name, first_name, age, email)
                     VALUES ('$lastN', '$firstN', $age, '$email');";
-             $qr = mysqli_query($conn,$sql);
+            $qr = mysqli_query($conn,$sql);
             if ($qr){
                 header("location: index.php");          
             } else {

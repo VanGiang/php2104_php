@@ -2,8 +2,9 @@
 
 require_once 'connect.php';
 
-    $id=$_GET['id'];
-    if(isset($_GET['id'])) {   
+    if (isset($_GET['id'])) {  
+        $id = $_GET['id'];
+         
         $sql = "SELECT * FROM persons WHERE id =$id;";
         $qr = mysqli_query($conn,$sql);
         $row = mysqli_fetch_array($qr);

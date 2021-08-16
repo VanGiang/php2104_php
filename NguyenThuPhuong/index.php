@@ -13,7 +13,7 @@
             margin: 0 30px;
             width: 600px;
         }
-        h1{
+        h1 {
              margin: 50px 770px 0;
         }
         p {
@@ -46,16 +46,16 @@
 
 require_once 'connect.php'; //Include file connect.php
    
-    if(isset($_POST['btn_search'])) {
+    if (isset($_POST['btn_search'])) {
         $search = $_POST['search'];
         $sql = "SELECT * FROM persons WHERE last_name LIKE '%$search%';";
     } else if (isset($_POST['btn_sortD'])) {
         $sql = "SELECT * FROM persons ORDER BY age DESC;";
-    }else if (isset($_POST['btn_sortA'])) {
+    } else if (isset($_POST['btn_sortA'])) {
         $sql = "SELECT * FROM persons ORDER BY age ASC;";
     } else if (isset($_POST['back'])) {
         $sql = "SELECT * FROM persons;";
-    }else {
+    } else {
         $sql = "SELECT * FROM persons;";
     }
 
