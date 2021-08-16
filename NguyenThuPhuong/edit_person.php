@@ -2,16 +2,14 @@
 
 require_once 'connect.php';
 
-    $id=$_GET['id'];
-    if(isset($_GET['id'])) 
-    {   
-        $sql = "SELECT * FROM persons WHERE id =$id";
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];  
+        $sql = "SELECT * FROM persons WHERE id =$id;";
         $qr = mysqli_query($conn,$sql);
         $row = mysqli_fetch_array($qr);
     }
 
-    if (isset($_POST['edit'])) 
-    {
+    if (isset($_POST['edit'])) {
         $lastN = $_POST['lastN'];
         $firstN = $_POST['firstN'];
         $age = $_POST['age'];
@@ -19,14 +17,12 @@ require_once 'connect.php';
         
         $sql = "UPDATE persons
                 SET last_name = '$lastN', first_name = '$firstN', age = $age, email = '$email'
-                WHERE id = $id";
+                WHERE id = $id;";
         $qr = mysqli_query($conn,$sql);
 
-        if ($qr)
-        {
+        if ($qr) {
             header("location: index.php");
-        } else 
-        {
+        } else {
             echo "Edit failed!" . "<a href='index.php'>Back to index</a>";
         } 
     } 
@@ -46,10 +42,10 @@ require_once 'connect.php';
         form {
             margin: 20px 800px;
         }
-        h1{
+        h1 {
             margin: 50px 800px 0 ;
         }
-        a{
+        a {
             margin: 10px 800px;
         }
     </style>

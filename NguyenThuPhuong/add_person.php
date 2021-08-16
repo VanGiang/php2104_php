@@ -7,17 +7,13 @@ require_once 'connect.php';
     $age = $_POST['age'];
     $email = $_POST['email'];
         
-    $sql = "INSERT INTO persons (last_name, first_name, age, email)
-            VALUES ('$lastN', '$firstN', $age, '$email')";
-
-        if (isset($_POST['add'])) 
-        {
+        if (isset($_POST['add'])) {    
+            $sql = "INSERT INTO persons (last_name, first_name, age, email)
+                    VALUES ('$lastN', '$firstN', $age, '$email');";
             $qr = mysqli_query($conn,$sql);
-            if ($qr)
-            {
-                header("location: index.php");
-            } else 
-            {
+            if ($qr){
+                header("location: index.php");          
+            } else {
                 echo "Add failed!" . "<a href='index.php'>Back to index</a>";
             } 
         } 
@@ -37,10 +33,10 @@ require_once 'connect.php';
         form {
             margin: 20px 800px;
         }
-        h1{
+        h1 {
             margin: 50px 800px 0 ;
         }
-        a{
+        a {
             margin: 10px 800px;
         }
     </style>
