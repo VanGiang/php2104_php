@@ -1,5 +1,5 @@
 <?php 
-include '../MySQL/connect.php';
+include 'connect.php';
 
 //Delete User
 
@@ -10,7 +10,7 @@ if (isset($_GET['deleteuser'])) {
     
     if ($result) {
         echo "<script> alert('Delete Successfuly'); </script>";
-        header('Location:http://localhost/Lession1/MySQL/View_DB.php');
+        header('Location: View_DB.php');
     } else {
         echo "<script> alert('Delete Failed'); </script>";
     }
@@ -19,12 +19,12 @@ if (isset($_GET['deleteuser'])) {
 //Delete All User
 
 if (isset($_GET['deletealluser'])) {
-    $sql = "DELETE FROM do_test1";
+    $sql = "SELECT * FROM do_test1";
     $result = $conn->query($sql);
 
     if ($result) {
         echo "<script> alert('Delete All User Successfuly'); </script>";
-        header('Location:http://localhost/Lession1/MySQL/View_DB.php');
+        /* header('Location: View_DB.php'); */
         /* die('ok'); */
     } else {
         echo "<script> alert('Delete All User Failed'); </script>";
@@ -34,14 +34,22 @@ if (isset($_GET['deletealluser'])) {
 //Sreach User
 
 if (isset($_POST['search']) && isset($_POST['btnsearch'])) {
-    $search = $_POST['search'];
-    $sql = "SELECT * FROM do_test1 WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%'";
+    $search_str = $_POST['search'];
+    $sql = "SELECT * FROM do_test1 WHERE first_name LIKE '%$search_str%' OR last_name LIKE '%$search_str%'";
     $result = $conn->query($sql);
 
-    if ($result) {
-        echo "<script> alert(Search User Successfuly'); </script>";
-    } else {
-        echo "<script> alert('User Not Exist'); </script>"; 
+    if ($result->num_rows > 0) {
+    
+    while ($row = $result->fetch_assoc()) {?>
+        <tr>
+            <td><?php echo $row["id"]; ?></td>
+            <td><?php echo $row["first_name"]; ?></td>
+            <td><?php echo $row["last_name"]; ?></td>
+            <td><?php echo $row["sex"]; ?></td>
+            <td><?php echo $row["age"]; ?></td>
+            <td><?php echo $row["email"]; ?></td>
+        </tr>
+    <?php }
     }
 }
 ?>

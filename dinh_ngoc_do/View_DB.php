@@ -13,12 +13,18 @@
     <h1 style="text-align: center;">List User</h1>
     <div class="container">
         <div class="wrapper">
-            <a href="Action_ViewDB.php" name="deletealluser" class="btn btn-danger">Delete All</a>
-            <form action="Action_ViewDB.php" method="POST">
+            <a href="Action_ViewDB.php?deletealluser=1" class="btn btn-danger">Delete All</a>
+            <form action="View_DB.php" method="POST">
                 <input type="text" placeholder="Search..." name="search" require>
                 <input type="submit" name="btnsearch" class="btn btn-primary" value="Search">
             </form>
-            <form action="Action_ViewDB.php"></form>
+            <form action="View_DB.php" method="POST">
+                <select name="sort" id="">
+                    <option value="asc">Sort By ID ASC</option>
+                    <option value="desc">Sort By ID DESC</option>
+                </select>
+                <input type="submit" name="btnsort" class="btn btn-primary" value="Sort">
+            </form>
         </div>
         <table class="table">
             <thead>
@@ -35,30 +41,107 @@
             <tbody>
                 <?php
                 include '../MySQL/connect.php';
-                $sql = "SELECT * FROM do_test1";
-                $result = $conn->query($sql);
+                //Search User
+
+                if (isset($_POST['search']) && isset($_POST['btnsearch'])) {
+                    $search_str = $_POST['search'];
+                    $sql = "SELECT * FROM do_test1 WHERE first_name LIKE '%$search_str%' OR last_name LIKE '%$search_str%'";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {?>
+                        <tr>
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["first_name"]; ?></td>
+                            <td><?php echo $row["last_name"]; ?></td>
+                            <td><?php echo $row["sex"]; ?></td>
+                            <td><?php echo $row["age"]; ?></td>
+                            <td><?php echo $row["email"]; ?></td>
+                            <td>
+                                <a href="View_DB.php".php?edituser=<?php echo $row["id"]; ?>"
+                                    class="btn btn-info">Edit</a>
+                                <a href="Action_ViewDB.php?deleteuser=<?php echo $row["id"]; ?>"
+                                    class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php }
+                    }
+                //In ra toàn bộ user
+
+                } else if (isset($_POST['sort']) && isset($_POST['btnsort'])) {
+                    $sort = $_POST['sort'];
+
+                    if ($sort == 'asc') {
+                        $sql = "SELECT * FROM do_test1 ORDER BY id ASC";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {?>
+                            <tr>
+                                <td><?php echo $row["id"]; ?></td>
+                                <td><?php echo $row["first_name"]; ?></td>
+                                <td><?php echo $row["last_name"]; ?></td>
+                                <td><?php echo $row["sex"]; ?></td>
+                                <td><?php echo $row["age"]; ?></td>
+                                <td><?php echo $row["email"]; ?></td>
+                                <td>
+                                    <a href="View_DB.php".php?edituser=<?php echo $row["id"]; ?>"
+                                        class="btn btn-info">Edit</a>
+                                    <a href="Action_ViewDB.php?deleteuser=<?php echo $row["id"]; ?>"
+                                        class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php }
+                        }
+
+                    } else if ($sort == 'desc') {
+                        $sql = "SELECT * FROM do_test1 ORDER BY id DESC";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {?>
+                            <tr>
+                                <td><?php echo $row["id"]; ?></td>
+                                <td><?php echo $row["first_name"]; ?></td>
+                                <td><?php echo $row["last_name"]; ?></td>
+                                <td><?php echo $row["sex"]; ?></td>
+                                <td><?php echo $row["age"]; ?></td>
+                                <td><?php echo $row["email"]; ?></td>
+                                <td>
+                                    <a href="View_DB.php".php?edituser=<?php echo $row["id"]; ?>"
+                                        class="btn btn-info">Edit</a>
+                                    <a href="Action_ViewDB.php?deleteuser=<?php echo $row["id"]; ?>"
+                                        class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php }
+                        }
+                    }
+
+                } else {
+                    $sql = "SELECT * FROM do_test1";
+                    $result = $conn->query($sql);
     
-                if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {?>
-                    <tr>
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["first_name"]; ?></td>
-                        <td><?php echo $row["last_name"]; ?></td>
-                        <td><?php echo $row["sex"]; ?></td>
-                        <td><?php echo $row["age"]; ?></td>
-                        <td><?php echo $row["email"]; ?></td>
-                        <td>
-                            <a href="View_DB.php".php?edituser=<?php echo $row["id"]; ?>"
-                                class="btn btn-info">Edit</a>
-                            <a href="Action_ViewDB.php?deleteuser=<?php echo $row["id"]; ?>"
-                                class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                <?php }
-                } 
-                $conn->close();
-                ?>
+                    if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {?>
+                        <tr>
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["first_name"]; ?></td>
+                            <td><?php echo $row["last_name"]; ?></td>
+                            <td><?php echo $row["sex"]; ?></td>
+                            <td><?php echo $row["age"]; ?></td>
+                            <td><?php echo $row["email"]; ?></td>
+                            <td>
+                                <a href="View_DB.php".php?edituser=<?php echo $row["id"]; ?>"
+                                    class="btn btn-info">Edit</a>
+                                <a href="Action_ViewDB.php?deleteuser=<?php echo $row["id"]; ?>"
+                                    class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php }
+                    }
+
+                }?>
             </tbody>
         </table>
     </div>
