@@ -40,12 +40,14 @@
             </thead>
             <tbody>
                 <?php
-                include '../MySQL/connect.php';
+                include 'connect.php';
                 //Search User
 
                 if (isset($_POST['search']) && isset($_POST['btnsearch'])) {
+                    include 'pagination.php';
+
                     $search_str = $_POST['search'];
-                    $sql = "SELECT * FROM do_test1 WHERE first_name LIKE '%$search_str%' OR last_name LIKE '%$search_str%'";
+                    $sql = "SELECT * FROM do_test1 WHERE first_name LIKE '%$search_str%' OR last_name LIKE '%$search_str%' LIMIT $eachPage OFFSET $nextPage";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -72,7 +74,9 @@
                     $sort = $_POST['sort'];
 
                     if ($sort == 'asc') {
-                        $sql = "SELECT * FROM do_test1 ORDER BY id ASC";
+                        include 'pagination.php';
+
+                        $sql = "SELECT * FROM do_test1 ORDER BY id ASC LIMIT $eachPage OFFSET $nextPage";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -95,7 +99,9 @@
                         }
 
                     } else if ($sort == 'desc') {
-                        $sql = "SELECT * FROM do_test1 ORDER BY id DESC";
+                        include 'pagination.php';
+
+                        $sql = "SELECT * FROM do_test1 ORDER BY id DESC LIMIT $eachPage OFFSET $nextPage";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -119,7 +125,9 @@
                     }
 
                 } else {
-                    $sql = "SELECT * FROM do_test1";
+                    include 'pagination.php';
+
+                    $sql = "SELECT * FROM do_test1 LIMIT $eachPage OFFSET $nextPage";
                     $result = $conn->query($sql);
     
                     if ($result->num_rows > 0) {
@@ -144,6 +152,15 @@
                 }?>
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <?php 
+                for ($i = 1; $i <= $pageNumber; $i++) {?>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php }
+                ?>
+            </ul>
+        </nav>
     </div>
     <h1 style="text-align: center;">Database</h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
