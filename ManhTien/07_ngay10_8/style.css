@@ -1,0 +1,37 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+form {
+    width: 400px;
+    height: 200px;
+    margin: 30px auto;
+    
+}
+
+input {
+    width: 250px;
+    margin-left: 80px;
+    margin-top: 10px;
+    
+}
+label {
+    margin-left: 10px;
+}
+#inp4 {
+    margin-left: 68px;
+}
+
+#btn {
+    width: 100px;
+    margin-left: 150px;
+    margin-top: 20px;
+}
+
+table tr td {
+    width: auto;
+    height: 30px;
+    border: 1px solid #333;
+    padding: 10px;
+}
