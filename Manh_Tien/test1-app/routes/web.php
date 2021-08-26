@@ -32,22 +32,31 @@ use Illuminate\Http\Request;
 Route::get('/form', function(){
     return view('view');
 });
-
+//route form get
 Route::get('/formget', function (Request $request) {
     return view('view', ['data' => $request->all()]);
 });
-
+//route form post
 Route::post('/formpost', function (Request $request) {
     return view('view', ['data' => $request->all()]);
 });
-
+//group 
+Route::group(['admin'], function() {
+    Route::get('/select', function () {
+        return 'select database';
+    });
+    Route::get('/edit', function () {
+        return 'Edit database';
+    });
+    Route::get('/delete', function () {
+        return 'Delete database';
+    });
+});
 Route::get('/view', function() {
     return view('view');
 });
 
-Route::get('/view2', function() {
-    return view('view2');
-});
+
 
 Route::post('/test2', function (Request $request) {
     echo view('view2', ['request'=> $request->input('name')]);
@@ -79,15 +88,3 @@ Route::get('/parameters/{id}', function ($id) {
 })->name('param');
 
 
-//group 
-Route::group(['admin'], function() {
-    Route::get('/select', function () {
-        return 'select database';
-    });
-    Route::get('/edit', function () {
-        return 'Edit database';
-    });
-    Route::get('/delete', function () {
-        return 'Delete database';
-    });
-});
