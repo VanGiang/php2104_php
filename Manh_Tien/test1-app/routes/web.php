@@ -40,6 +40,7 @@ Route::get('/formget', function (Request $request) {
 Route::post('/formpost', function (Request $request) {
     return view('view', ['data' => $request->all()]);
 });
+<<<<<<< HEAD
 
 Route::get('/view', function() {
     return view('view');
@@ -51,34 +52,7 @@ Route::get('/view2', function() {
 
 Route::post('/test2', function (Request $request) {
     echo view('view2', ['request'=> $request->input('name')]);
-});
-
-//Route::redirect('/here', '/there');  //chuyển từ trang trước ra sau
-
-Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
-
-Route::get('/user/{id}', function (Request $request, $id) {//nhập id tùy chọn ở sau  có thể có hoặc ko
-    return 'User '.$id;
-});
-
-Route::get('/users/{name?}', function ($name = 'John') {//nhập tên tùy chọn ở sau  có thể có hoặc ko
-    return $name;
-});
-
-Route::get('/userss/{name}', function ($name) {
-    //
-})->where('name', '[A-Za-z]+');//kiểm tra nếu đkiện sai thì báo lỗi
-
-
-Route::get('/greeting', function () {
-   return view('greeting', ['name' => 'James']);
-}); 
-
-Route::get('/parameters/{id}', function ($id) {
-    return 'Parameter ' . $id;
-})->name('param');
-
-
+=======
 //group 
 Route::group(['admin'], function() {
     Route::get('/select', function () {
@@ -91,3 +65,72 @@ Route::group(['admin'], function() {
         return 'Delete database';
     });
 });
+
+
+Route::get('/user/{id}', function (Request $request, $id) {
+    return 'User '.$id;
+>>>>>>> 56eedc6... [TienBM] My-page
+});
+
+Route::get('/view', function() {
+    return view('view');
+});
+
+Route::get('/test', function (Request $request) {
+    return view('view', ['request'=> $request->all()]);
+});
+
+Route::get('/view2', function () {
+    if (View::exists('emails.customer')) {
+        return view('view2', ['name' => 'Tien']);
+    }
+
+    if (View::exists('emails.customer') == false) {
+        return view('view2', ['name' => 'James']);
+    }
+
+    
+});
+
+use Illuminate\Support\Facades\View;
+
+Route::get('/views', function () {
+    return view('view2')
+                ->with('name', 'Victoria')
+                ->with('occupation', 'Astronaut');
+});
+
+<<<<<<< HEAD
+//group 
+Route::group(['admin'], function() {
+    Route::get('/select', function () {
+        return 'select database';
+    });
+    Route::get('/edit', function () {
+        return 'Edit database';
+    });
+    Route::get('/delete', function () {
+        return 'Delete database';
+    });
+});
+=======
+//route view component
+Route::get('/home-page', function() {
+    if (View::exists('index')) {
+        return view('index');
+    }
+    return view('home-page');
+})->name('home-page');
+
+Route::get('/service-page', function() {
+    return view('my-layouts-page.service-page');
+})->name('service-page');
+
+Route::get('/about-page', function() {
+    return view('my-layouts-page.about-page');
+})->name('about-page');
+
+Route::get('/contact-page', function() {
+    return view('my-layouts-page.contact-page');
+})->name('contact-page');
+>>>>>>> 56eedc6... [TienBM] My-page
