@@ -14,7 +14,6 @@
     <div>
         <h2> route_show-post </h2>
         <table class="table">
-            @csrf
             <thead>
                 <tr>
                     <th scope="col">name</th>

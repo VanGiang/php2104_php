@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use Symfony\Contracts\Service\Attribute\Required;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +51,20 @@ Route::middleware(['auth'])->group(function () {
         return view('show-get', ['show' => $request->all()]);
     });
 });
+
+
+Route::get('/show', function () {
+
+    //return view('/test_view/show', ['name' => 'thao']);
+
+    if (View::exists('test-view.show')) {
+        // $data = ['name' => 'thao', 'age' => '26'];
+        // return view('/test_view/show', $data);
+
+        return view('/test-view/show')
+            ->with('name', 'thao')
+            ->with('age', 24);
+    }
+    return view('welcome');
+});
+
