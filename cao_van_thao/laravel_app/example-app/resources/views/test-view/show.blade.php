@@ -25,6 +25,7 @@
 <body>
 
     <x-package-my-layout-header />
+    
     <h1>php2104 </h1>
     <p>{{ $name }}</p>
     <p>{{ $age }}</p>
