@@ -21,6 +21,7 @@ class MyLayoutHeader extends Component
      *
      * @return \Illuminate\Contracts\View\View|\Closure|string
      */
+    
     public function render()
     {
         return view('components.my-layout-header');

@@ -16,10 +16,10 @@
 
     <link rel="stylesheet" href="resources/css/my-layout-test/theme.css"> -->
 
-    <link rel="stylesheet" href="{{ asset('css/my-layout-test/maicons.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/my-layout-test/maicons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/my-layout-test/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/owl-carousel/css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/animate/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/animate/animate.css') }}"> -->
 </head>
 
 <body>

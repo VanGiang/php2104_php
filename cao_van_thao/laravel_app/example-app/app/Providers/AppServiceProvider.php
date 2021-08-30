@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::component('package-my-layout-footer', MyLayoutFooter::class);
 
+
         Blade::component('package-my-layout-header', MyLayoutHeader::class);
     }
 }
