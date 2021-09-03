@@ -88,3 +88,95 @@ Route::get('/parameters/{id}', function ($id) {
 })->name('param');
 
 
+//route view component
+Route::get('/home-page', function() {
+    if (View::exists('index')) {
+        return view('index');
+    }
+    return view('home-page');
+})->name('home-page');
+
+Route::get('/service-page', function() {
+    return view('my-layouts-page.service-page');
+})->name('service-page');
+
+Route::get('/about-page', function() {
+    return view('my-layouts-page.about-page');
+})->name('about-page');
+
+Route::get('/contact-page', function() {
+    return view('my-layouts-page.contact-page');
+})->name('contact-page');
+
+//themes page
+Route::get('/theme-home-page', function() {
+    if (View::exists('index')) {
+        return view('index');
+    }
+    return view('theme-home-page');
+})->name('theme-home-page');
+
+Route::get('/theme-contact-page', function() {
+    return view('my-theme-page.contact-page');
+})->name('theme-contact-page');
+
+Route::get('/theme-groceries-page', function() {
+    return view('my-theme-page.groceries-page');
+})->name('theme-groceries-page');
+
+Route::get('/theme-household-page', function() {
+    return view('my-theme-page.household-page');
+})->name('theme-household-page');
+
+Route::get('/theme-personalcare-page', function() {
+    return view('my-theme-page.personalcare-page');
+})->name('theme-personalcare-page');
+
+Route::get('/theme-packagedfoods-page', function() {
+    return view('my-theme-page.packagedfoods-page');
+})->name('theme-packagedfoods-page');
+
+Route::get('/theme-beverages-page', function() {
+    return view('my-theme-page.beverages-page');
+})->name('theme-beverages-page');
+
+Route::get('/theme-gourmet-page', function() {
+    return view('my-theme-page.gourmet-page');
+})->name('theme-gourmet-page');
+
+Route::get('/theme-offers-page', function() {
+    return view('my-theme-page.offers-page');
+})->name('theme-offers-page');
+
+
+Route::get('/theme-login-page', function() {
+    return view('my-theme-page.login-page');
+})->name('theme-login-page');
+
+Route::get('/theme-registered-page', function() {
+    return view('my-theme-page.registered-page');
+})->name('theme-registered-page');
+
+Route::get('/theme-products-page', function() {
+    return view('my-theme-page.products-page');
+})->name('theme-products-page');
+
+Route::get('/theme-single-page', function() {
+    return view('my-theme-page.single-page');
+})->name('theme-single-page');
+
+Route::get('/theme-faq-page', function() {
+    return view('my-theme-page.faq-page');
+})->name('theme-faq-page');
+
+Route::get('/theme-checkout-page', function() {
+    return view('my-theme-page.checkout-page');
+})->name('theme-checkout-page');
+
+Route::get('/theme-short-codes-page', function() {
+    return view('my-theme-page.short-codes-page');
+})->name('theme-short-codes-page');
+
+Route::get('/theme-about-page', function() {
+    return view('my-theme-page.about-page');
+})->name('theme-about-page');
