@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateClient extends Migration
+class CreateCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class UpdateClient extends Migration
      */
     public function up()
     {
-        Schema::table('client', function (Blueprint $table) {
-            $table->text('first_name')->after('password');
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->boolean('is_public')->default(1);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class UpdateClient extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('first_name');
-        });
+        Schema::dropIfExists('categories');
     }
 }

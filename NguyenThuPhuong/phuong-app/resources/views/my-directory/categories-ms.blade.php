@@ -15,18 +15,46 @@
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li><a href="/shop-ms" class="active">All</a></li>
+    					<li><a href="/shop-ms"
+						@if ($category->name == '')
+							class="active"
+						@endif
+						>All</a></li>
     					<li>
-						<a href="/categories/1">Fruits</a>
+						<a href="/categories/1"
+							@if ($category->name == 'Fruits')
+								class="active"
+							@endif
+							>
+							Fruits
+						</a>
 						</li>
 						<li>
-						<a href="/categories/2">Vegetables</a>
+						<a href="/categories/2"
+							@if ($category->name == 'Vegetables')
+								class="active"
+							@endif
+							>
+							Vegetables
+						</a>
 						</li>
     					<li>
-						<a href="/categories/3">Juices</a>
+						<a href="/categories/3"
+							@if ($category->name == 'Juices')
+								class="active"
+							@endif
+							>
+							Juices
+						</a>
 						</li>
     					<li>
-						<a href="/categories/4">Dried</a>
+						<a href="/categories/4"
+							@if ($category->name == 'Dried')
+								class="active"
+							@endif
+							>
+							Dried
+						</a>
 						</li>
     				</ul>
     			</div>

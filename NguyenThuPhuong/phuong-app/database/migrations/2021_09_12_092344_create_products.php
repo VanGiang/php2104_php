@@ -23,6 +23,7 @@ class CreateProducts extends Migration
             $table->integer('sold')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();
+           
         });
     }
 
