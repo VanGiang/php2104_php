@@ -18,6 +18,8 @@ class UpdateProducts extends Migration
             $table->integer('sale_off')->default(0);
             $table->bigInteger('user_id')->after('id'); 
             $table->bigInteger('category_id')->after('id');
+            $table->boolean('is_public')->default(1)->after('sold');
+            
         });
     }
 
@@ -30,7 +32,7 @@ class UpdateProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->integer('price')->nullable()->change();
-            $table->dropColumn(['sale_off', 'user_id', 'category_id']);
+            $table->dropColumn(['sale_off', 'user_id', 'category_id','is_public']);
         });
     }
 }
