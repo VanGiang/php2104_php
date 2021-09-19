@@ -4,6 +4,7 @@
 /public/css
 /public/js
 /public/themes
+resources/views/layouts/admin
 /storage/*.key
 /vendor
 /views/vendor

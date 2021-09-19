@@ -42,7 +42,7 @@ class ProductsSeeder extends Seeder
                 'sale_off'=>rand(0, 30),
                 'price_off'=>rand(300, 500),
                 'is_public'=>rand(1, 4),
-                'categories_id'=>rand(1, 4),
+                'categories_id'=>$categories->random()->id,
             ];
         }
        Product::insert($data);

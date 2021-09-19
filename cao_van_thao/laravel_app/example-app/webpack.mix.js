@@ -18,3 +18,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
 ]);
 
 mix.copyDirectory('resources/themes/dailyShop', 'public/themes/dailyShop');
+
+mix.copyDirectory('resources/themes/Admin/nalika', 'public/themes/Admin/nalika');
