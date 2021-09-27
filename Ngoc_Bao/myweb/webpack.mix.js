@@ -11,8 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.js('resources/js/app.js', 'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+
+    ]);
+
+mix.copyDirectory('resources/views/vegefoods-master/css', 'public/vegefoods/css');
+mix.copyDirectory('resources/views/vegefoods-master/js', 'public/vegefoods/js');
+mix.copyDirectory('resources/views/vegefoods-master/fonts', 'public/vegefoods/fonts');
+mix.copyDirectory('resources/views/vegefoods-master/scss', 'public/vegefoods/scss');
+mix.copyDirectory('resources/views/vegefoods-master/images', 'public/vegefoods/image');
+
+
+
+// webpack
+mix.copyDirectory('vendor/almasaeed2010/adminlte', 'public/themes/adminlte');

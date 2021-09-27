@@ -1,6 +1,3 @@
-@section('username')
-<a href="#" class="d-block">{{$user->name}}</a>
-@endsection
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,6 +1,3 @@
-@section('username')
-<a href="#" class="d-block">{{$user->name}}</a>
-@endsection
 <x-admin>
     <form action="{{ route('products.update',['product'=>$product->id])}}" method="POST">
         @csrf
@@ -50,14 +47,20 @@
                     </div>
                     <div class=" mt-4">
                         <span style="color: #bbb;">Category</span>
-                        <h4 class="mb-0">                            
-                            <select class="form-select" aria-label="Default select example" name="category_id">
-                                @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">
-                                        {{$category->name}}
-                                    </option>
+                        <h4 class="mb-0">
+                            
+                            <input type="text" name="category_id" value="{{ $product->category->id }}" >
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                  <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                                    @foreach ($categories as $category)
+                                        <li>{{$category->name}}</li>
                                     @endforeach
-                            </select>
+                                  
+                                </ul>
+                            </div>
                         </h4>
                     </div>
                     <div class=" mt-4">
@@ -70,23 +73,14 @@
                     </div>
                     
                     <hr>
-                    <div class="row">
-                        <div class="col-sm-6">
-                          <!-- checkbox -->
-                          <div class="form-group">
-                            <div class="form-check">
-                              <input name="is_public" class="form-check-input" type="checkbox" checked="" value="1">
-                              <label class="form-check-label">public</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label>Description</label>
-                        <textarea name="description" class="form-control" rows="3">
-                            {{$product->description}}
-                        </textarea>
-                      </div>
+                    <span style="color: #bbb;">is public</span>
+                    <h5>
+                        <input type="text" name="is_public" value="{{ $product->is_public }}">
+                    </h5>
+                    <span style="color: #bbb;">Description</span>
+                    <h5>
+                        <input type="text" name="description" value="{{ $product->description }}" style="min-width: 600px;min-height: 80px">
+                    </h5>
 
                     <button type="submit" class="btn btn-warning" style="margin: 20px 20px">confirm change</button>
                     </div>

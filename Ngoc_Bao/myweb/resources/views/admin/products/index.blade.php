@@ -1,13 +1,7 @@
-@section('username')
-<a href="#" class="d-block">{{$user->name}}</a>
-@endsection
 <x-admin>
   <div class="card ">
     <div class="card-header text-center">
       <h1 class="">List Of Products</h1>
-      <a href="{{route('products.create')}}">
-        <i class="fas fa-plus-square" style="float: right; font-size: 40px; width: 95px; color: green" class="btn btn-success btn-xs"></i>
-      </a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">

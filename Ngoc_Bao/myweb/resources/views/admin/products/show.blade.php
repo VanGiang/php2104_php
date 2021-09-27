@@ -1,6 +1,3 @@
-@section('username')
-<a href="#" class="d-block">{{$user->name}}</a>
-@endsection
 <x-admin>
   <div class="content" style="min-height: 1602px;">
     <!-- Content Header (Page header) -->
