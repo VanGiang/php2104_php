@@ -44,18 +44,18 @@
             <div class="row mb-5">
 
               @foreach ($products as $product)
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="{{ route('product.info', ['id' => $product->id]) }}"><img src="/themes/shopper_fashion/images/{{ $product->image }}" alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="{{ route('product.info', ['id' => $product->id]) }}">{{ $product->name }}</a></h3>
-                    <p class="mb-0">{{ $product->title }}</p>
-                    <p class="text-primary font-weight-bold">${{ $product->price }}</p>
+                <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                  <div class="block-4 text-center border">
+                    <figure class="block-4-image">
+                      <a href="{{ route('product.info', ['id' => $product->id]) }}"><img src="{{ asset('storage/products/' . $product->image) }}" alt="Image placeholder" class="img-fluid"></a>
+                    </figure>
+                    <div class="block-4-text p-4">
+                      <h3><a href="{{ route('product.info', ['id' => $product->id]) }}">{{ $product->name }}</a></h3>
+                      <p class="mb-0">{{ $product->title }}</p>
+                      <p class="text-primary font-weight-bold">${{ $product->price }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
               @endforeach
               <!-- <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
@@ -289,7 +289,7 @@
                   <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
                     <a class="block-2-item" href="{{ route('shopper.home') }}">
                       <figure class="image">
-                        <img src="/themes/shopper_fashion/images/{{ $category->image }}" alt="" class="img-fluid">
+                        <img src="{{ asset('storage/categories/' . $category->image) }}" alt="" class="img-fluid">
                       </figure>
                       <div class="text">
                         <span class="text-uppercase">Collections</span>

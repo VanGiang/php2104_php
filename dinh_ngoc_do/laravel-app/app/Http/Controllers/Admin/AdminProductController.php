@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Routing\ResourceRegistrar;
+use App\Http\Requests\StoreProductRequest;
 
 class AdminProductController extends Controller
 {
@@ -48,16 +50,15 @@ class AdminProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         $data = $request->only([
             'category_id',
             'name',
             'title',
-            'image',
             'price',
             'description',
             'quantity',
@@ -71,6 +72,14 @@ class AdminProductController extends Controller
        /*  dd($data); */
 
         try {
+            $file = $request->file('image')->validated();
+
+            if ($file) {
+                $file->store('public/products');
+                $data['image'] = $file->hashName();
+                /* dd($data); */
+            }
+
             $product = $this->modelProduct->create($data);
             $msg = 'Create Product Successfully';
 
@@ -190,5 +199,10 @@ class AdminProductController extends Controller
                 ->with('msg', $error);
         }
 
+    }
+
+    public function history()
+    {
+        return view('admin.product.admin-products-history');
     }
 }

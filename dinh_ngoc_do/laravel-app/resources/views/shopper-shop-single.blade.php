@@ -11,7 +11,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="/themes/shopper_fashion/images/{{ $product->image }}" alt="Image" class="img-fluid">
+            <img src="{{ showProductImage($product->image) }}" alt="{{ $product->name }}" class="img-fluid">
           </div>
           <div class="col-md-6">
             <h2 class="text-black">{{ $product->name }}</h2>
@@ -68,7 +68,7 @@
               <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
-                    <img src="/themes/shopper_fashion/images/{{ $product->image }}" alt="Image placeholder" class="img-fluid">
+                    <img src="{{ showProductImage($product->image) }}" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">{{ $product->name }}</a></h3>

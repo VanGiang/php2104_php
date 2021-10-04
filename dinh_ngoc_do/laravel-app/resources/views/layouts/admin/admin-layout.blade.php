@@ -302,6 +302,13 @@
                   <p>List Product</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.products.history') }}" class="nav-link 
+                @if (url()->current() == route('admin.products.history')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>History</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -411,6 +418,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/themes/admin/dist/js/pages/dashboard.js"></script>
 
+@yield('script-image-product')
 @yield('script-delete-alert')
 @yield('script-close-alert')
 </body>

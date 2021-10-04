@@ -26,7 +26,8 @@ class ShopController extends Controller
         /* $category = $this->categoryModel->findOrFail($id); */
 
         $products = $this->productModel
-            ->orderBy('price', 'ASC')
+            ->where('is_public', 1)
+            ->orderBy('price', 'DESC')
             ->paginate(12);
 
         /* $products = $category->products;

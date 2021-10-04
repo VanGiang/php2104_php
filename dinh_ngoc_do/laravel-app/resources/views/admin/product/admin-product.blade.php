@@ -15,7 +15,7 @@
           <div class="toast-body">{{ session('msg') }}</div>
         </div>
       </div>
-    @else (session('error'))
+    @elseif (session('error'))
       <div id="toastsContainerTopRight" class="toasts-top-right fixed">
         <div class="toast bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header">
@@ -43,7 +43,7 @@
           <th>Quantity</th>
           <th>Price</th>
           <th>Category</th>
-          <th>Status</th>
+          <th>Public</th>
           <th>Creator</th>
           <th style="width: 40px">Action</th>
         </tr>
@@ -58,8 +58,8 @@
               </a>
             </td>
             <td>
-              <img src="/themes/shopper_fashion/images/{{ $product->image }}" 
-              alt="Image placeholder" 
+              <img src="{{ showProductImage($product->image) }}" 
+              alt="{{ $product->name }}" 
               class="img-fluid"
               style="width: 60px; height: 45px;">
             </td>
@@ -67,8 +67,12 @@
             <td>{{ $product->quantity }}</td>
             <td>${{ $product->price }}</td>
             <td><span class="badge bg-primary">{{ $product->category->name }}</span></td>
-            <td>{{ $product->is_public }}</td>
-            <td>{{ $product->user_id }}</td>
+            @if ($product->is_public == 1)
+              <td>Yes</td>
+            @elseif ($product->is_public == 0)
+              <td>No</td>
+            @endif
+            <td>{{ $product->user->name }}</td>
             <td>
               <div class="btn-group btn-group-sm">
                 <a href="{{ route('product.info', ['id' => $product->id]) }}" class="btn btn-success" target="_blank">

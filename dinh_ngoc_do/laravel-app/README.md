@@ -75,3 +75,33 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 + Get products data from db
 + Featured Products, take 5 product with the highest of price
 
+---27/09/2021---
+* File Change
+- Controller
++ AdminProductController
++ ShopController
+
+- View 
++ Admin\Product : product, add, edit
++ Admin\Partials : form-product
++ Layout\Admin : layout
++ Shopper-shop
++ Shopper-shop-single
+
+-Models 
++ Product
++ User
+
+--Storage
++ Public\Products: image
+
+--Public
++ Storage\Products: link 
+
+---01/10/2021---
+
+--App\View\Components : ImageLink
+
+--composer.json
+
+--Folder storage in public isn't link yet , link it to storage/public folder
