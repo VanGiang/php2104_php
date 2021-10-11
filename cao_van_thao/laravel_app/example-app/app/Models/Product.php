@@ -24,6 +24,7 @@ class Product extends Model
         'price_off',
         'is_public',
         'categories_id',
+        'image_name',
     ];
 
     public function category()

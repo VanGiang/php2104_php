@@ -22,13 +22,13 @@
 					<label for="">Name</label>
 					<input type="text" name="name" class="form-control" id="" placeholder="Name..." value="{{ old('name', @$product->name) }}">
 				</div>
-				@if ($errors->has('name'))
+				@foreach ($errors->get('name') as $message)
 					<div class="alert-danger">
-						 <ul>
-							<li>{{ $errors->first('name') }}</li>
+						<ul>
+							<li>{{ $message }}</li>
 						</ul>
-					 </div>
-				@endif
+					</div>
+				@endforeach
 				<div class="form-group">
 					<label>Description</label>
 					<textarea class="form-control" name="description"  rows="5" placeholder="Enter Quantity...">{{ old('description', @$product->description) }}</textarea>

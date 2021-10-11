@@ -31,7 +31,6 @@ class ProductController extends Controller
         return view('admin.products.index', [
             'products' => $products,
         ]);
-        //dd('ok');
     }
 
     /**
@@ -79,8 +78,9 @@ class ProductController extends Controller
         $data['user_id'] = auth()->id();
 
         try {
-            if($file) {
+            if ($file) {
                 $file->store('public/products');
+                $data['image_name'] = $file->getClientOriginalName();
                 $data['image'] = $file->hashName();
             }
 
@@ -165,11 +165,11 @@ class ProductController extends Controller
 
         try {
 
-            if($file) {
+            if ($file) {
                 $file->store('public/products');
                 $file->getClientOriginalName();
-                $data['image'] = $file->hashName();
                 $data['image_name'] = $file->getClientOriginalName();
+                $data['image'] = $file->hashName();
             }
             $product->update($data);
             $msg = 'Update product success.';

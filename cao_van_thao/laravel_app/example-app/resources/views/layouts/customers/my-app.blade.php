@@ -22,10 +22,10 @@
     <link id="switcher" href="/themes/dailyShop/css/theme-color/default-theme.css" rel="stylesheet">
     <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
     <!-- Top Slider CSS -->
-    <link href="themes/dailyShop/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+    <link href="/themes/dailyShop/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
 
     <!-- Main style sheet -->
-    <link href="themes/dailyShop/css/style.css" rel="stylesheet">    
+    <link href="/themes/dailyShop/css/style.css" rel="stylesheet">    
 
     <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -72,7 +72,7 @@
               <!-- single slide -->
               <li>
                 <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="themes/dailyShop/img/testimonial-img-2.jpg" alt="testimonial img">
+                <img class="aa-testimonial-img" src="/themes/dailyShop/img/testimonial-img-2.jpg" alt="testimonial img">
                   <span class="fa fa-quote-left aa-testimonial-quote"></span>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
                   <div class="aa-testimonial-info">
@@ -85,7 +85,7 @@
               <!-- single slide -->
               <li>
                 <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="themes/dailyShop/img/testimonial-img-1.jpg" alt="testimonial img">
+                <img class="aa-testimonial-img" src="/themes/dailyShop/img/testimonial-img-1.jpg" alt="testimonial img">
                   <span class="fa fa-quote-left aa-testimonial-quote"></span>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
                   <div class="aa-testimonial-info">
@@ -98,7 +98,7 @@
                <!-- single slide -->
               <li>
                 <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="themes/dailyShop/img/testimonial-img-3.jpg" alt="testimonial img">
+                <img class="aa-testimonial-img" src="/themes/dailyShop/img/testimonial-img-3.jpg" alt="testimonial img">
                   <span class="fa fa-quote-left aa-testimonial-quote"></span>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
                   <div class="aa-testimonial-info">
@@ -128,7 +128,7 @@
               <div class="col-md-4 col-sm-4">
                 <div class="aa-latest-blog-single">
                   <figure class="aa-blog-img">                    
-                    <a href="#"><img src="themes/dailyShop/img/promo-banner-1.jpg" alt="img"></a>  
+                    <a href="#"><img src="/themes/dailyShop/img/promo-banner-1.jpg" alt="img"></a>  
                       <figcaption class="aa-blog-img-caption">
                       <span href="#"><i class="fa fa-eye"></i>5K</span>
                       <a href="#"><i class="fa fa-thumbs-o-up"></i>426</a>
@@ -147,7 +147,7 @@
               <div class="col-md-4 col-sm-4">
                 <div class="aa-latest-blog-single">
                   <figure class="aa-blog-img">                    
-                    <a href="#"><img src="themes/dailyShop/img/promo-banner-3.jpg" alt="img"></a>  
+                    <a href="#"><img src="/themes/dailyShop/img/promo-banner-3.jpg" alt="img"></a>  
                       <figcaption class="aa-blog-img-caption">
                       <span href="#"><i class="fa fa-eye"></i>5K</span>
                       <a href="#"><i class="fa fa-thumbs-o-up"></i>426</a>
@@ -166,7 +166,7 @@
               <div class="col-md-4 col-sm-4">
                 <div class="aa-latest-blog-single">
                   <figure class="aa-blog-img">                    
-                    <a href="#"><img src="themes/dailyShop/img/promo-banner-1.jpg" alt="img"></a>  
+                    <a href="#"><img src="/themes/dailyShop/img/promo-banner-1.jpg" alt="img"></a>  
                       <figcaption class="aa-blog-img-caption">
                       <span href="#"><i class="fa fa-eye"></i>5K</span>
                       <a href="#"><i class="fa fa-thumbs-o-up"></i>426</a>
@@ -196,17 +196,17 @@
         <div class="col-md-12">
           <div class="aa-client-brand-area">
             <ul class="aa-client-brand-slider">
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-java.png" alt="java img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-jquery.png" alt="jquery img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-html5.png" alt="html5 img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-css3.png" alt="css3 img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-wordpress.png" alt="wordPress img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-joomla.png" alt="joomla img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-java.png" alt="java img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-jquery.png" alt="jquery img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-html5.png" alt="html5 img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-css3.png" alt="css3 img"></a></li>
-              <li><a href="#"><img src="themes/dailyShop/img/client-brand-wordpress.png" alt="wordPress img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-java.png" alt="java img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-jquery.png" alt="jquery img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-html5.png" alt="html5 img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-css3.png" alt="css3 img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-wordpress.png" alt="wordPress img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-joomla.png" alt="joomla img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-java.png" alt="java img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-jquery.png" alt="jquery img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-html5.png" alt="html5 img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-css3.png" alt="css3 img"></a></li>
+              <li><a href="#"><img src="/themes/dailyShop/img/client-brand-wordpress.png" alt="wordPress img"></a></li>
             </ul>
           </div>
         </div>
@@ -265,23 +265,23 @@
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="themes/dailyShop/js/bootstrap.js"></script>  
+  <script src="/themes/dailyShop/js/bootstrap.js"></script>  
   <!-- SmartMenus jQuery plugin -->
-  <script type="text/javascript" src="themes/dailyShop/js/jquery.smartmenus.js"></script>
+  <script type="text/javascript" src="/themes/dailyShop/js/jquery.smartmenus.js"></script>
   <!-- SmartMenus jQuery Bootstrap Addon -->
-  <script type="text/javascript" src="themes/dailyShop/js/jquery.smartmenus.bootstrap.js"></script>  
+  <script type="text/javascript" src="/themes/dailyShop/js/jquery.smartmenus.bootstrap.js"></script>  
   <!-- To Slider JS -->
-  <script src="themes/dailyShop/js/sequence.js"></script>
-  <script src="themes/dailyShop/js/sequence-theme.modern-slide-in.js"></script>  
+  <script src="/themes/dailyShop/js/sequence.js"></script>
+  <script src="/themes/dailyShop/js/sequence-theme.modern-slide-in.js"></script>  
   <!-- Product view slider -->
-  <script type="text/javascript" src="themes/dailyShop/js/jquery.simpleGallery.js"></script>
-  <script type="text/javascript" src="themes/dailyShop/js/jquery.simpleLens.js"></script>
+  <script type="text/javascript" src="/themes/dailyShop/js/jquery.simpleGallery.js"></script>
+  <script type="text/javascript" src="/themes/dailyShop/js/jquery.simpleLens.js"></script>
   <!-- slick slider -->
-  <script type="text/javascript" src="themes/dailyShop/js/slick.js"></script>
+  <script type="text/javascript" src="/themes/dailyShop/js/slick.js"></script>
   <!-- Price picker slider -->
-  <script type="text/javascript" src="themes/dailyShop/js/nouislider.js"></script>
+  <script type="text/javascript" src="/themes/dailyShop/js/nouislider.js"></script>
   <!-- Custom js -->
-  <script src="themes/dailyShop/js/custom.js"></script> 
+  <script src="/themes/dailyShop/js/custom.js"></script> 
 
   </body>
 </html>

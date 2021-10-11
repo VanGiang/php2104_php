@@ -195,7 +195,7 @@
                             @endforeach
                         </ul>	
 
-                        <a class="aa-browse-btn" href="">browse all Product<span class="fa fa-long-arrow-right"></span></a>
+                        <a class="aa-browse-btn" href="{{ route('products.product') }}">browse all Product<span class="fa fa-long-arrow-right"></span></a>
                         </div>
                         <!-- / men product category -->
                         <!-- start women product category -->

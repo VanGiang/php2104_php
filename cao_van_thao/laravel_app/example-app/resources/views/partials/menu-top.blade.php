@@ -15,7 +15,7 @@
             <div class="navbar-collapse collapse">
                 <!-- Left nav -->
                 <ul class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ route('home-page') }}">Home</a></li>
                 <li><a href="#">Men <span class="caret"></span></a>
                     <ul class="dropdown-menu">                
                     <li><a href="#">Casual</a></li>
@@ -107,19 +107,19 @@
                     </ul>
                 </li>
                 <li><a href="#">Furniture</a></li>            
-                <li><a href="themes/dailyShop/blog-archive.html">Blog <span class="caret"></span></a>
+                <li><a href="/themes/dailyShop/blog-archive.html">Blog <span class="caret"></span></a>
                     <ul class="dropdown-menu">                
-                    <li><a href="themes/dailyShop/blog-archive.html">Blog Style 1</a></li>
-                    <li><a href="themes/dailyShop/blog-archive-2.html">Blog Style 2</a></li>
-                    <li><a href="themes/dailyShop/blog-single.html">Blog Single</a></li>                
+                    <li><a href="/themes/dailyShop/blog-archive.html">Blog Style 1</a></li>
+                    <li><a href="/themes/dailyShop/blog-archive-2.html">Blog Style 2</a></li>
+                    <li><a href="/themes/dailyShop/blog-single.html">Blog Single</a></li>                
                     </ul>
                 </li>
-                <li><a href="themes/dailyShop/contact.html">Contact</a></li>
+                <li><a href="/themes/dailyShop/contact.html">Contact</a></li>
                 <li><a href="#">Pages <span class="caret"></span></a>
                     <ul class="dropdown-menu">                
-                    <li><a href="themes/dailyShop/product.html">Shop Page</a></li>
-                    <li><a href="themes/dailyShop/product-detail.html">Shop Single</a></li>                
-                    <li><a href="themes/dailyShop/404.html">404 Page</a></li>                
+                    <li><a href="/themes/dailyShop/product.html">Shop Page</a></li>
+                    <li><a href="/themes/dailyShop/product-detail.html">Shop Single</a></li>                
+                    <li><a href="/themes/dailyShop/404.html">404 Page</a></li>                
                     </ul>
                 </li>
                 </ul>
