@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,8 @@ Route::get('/products', [ProductController::class, 'Product'])->name('products.p
 Route::get('/productsdetail/{id}', [ProductDetailController::class, 'ProductDetail'])->name('products.product-detail');
 
 Route::get('/categories/{id}', [CategoryController::class, 'categories'])->name('category.show');
+
+route::post('/orders', [OrderController::class, 'saveDataToSession'])->name('order.save');
 
 Route::get('/child-page', function() {
     return view('my-directory.child-page');

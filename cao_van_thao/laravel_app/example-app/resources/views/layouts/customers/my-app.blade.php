@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Daily Shop | Home</title>
     
     <!-- Font awesome -->
@@ -281,7 +282,9 @@
   <!-- Price picker slider -->
   <script type="text/javascript" src="/themes/dailyShop/js/nouislider.js"></script>
   <!-- Custom js -->
-  <script src="/themes/dailyShop/js/custom.js"></script> 
+  <script src="/themes/dailyShop/js/custom.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @yield('script')
 
   </body>
 </html>

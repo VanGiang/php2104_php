@@ -82,7 +82,7 @@
                     <a class="aa-cart-link" href="#">
                     <span class="fa fa-shopping-basket"></span>
                     <span class="aa-cart-title">SHOPPING CART</span>
-                    <span class="aa-cart-notify">2</span>
+                    <span class="aa-cart-notify"><span class="cart-quantity">{{ showCartQuantity() }}</span></span>
                     </a>
                     <div class="aa-cartbox-summary">
                     <ul>

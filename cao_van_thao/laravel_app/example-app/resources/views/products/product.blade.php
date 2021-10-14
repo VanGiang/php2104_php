@@ -55,8 +55,8 @@
 								@foreach ($products as $product)
 									<li>
 										<figure>
-											<a class="aa-product-img" href="#"><img src="{{ $product->image }}" alt="polo shirt img"></a>
-											<a class="aa-add-card-btn"href="{{ route('products.product-detail', ['id' => $product->id]) }}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+											<a class="aa-product-img" href="{{ route('products.product-detail', ['id' => $product->id]) }}"><img src="{{ $product->image }}" alt="polo shirt img"></a>
+											<a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart "></span>Add To Cart</a>
 											<figcaption>
 												<h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
 												@if ($product->sale_off > 0)
@@ -144,15 +144,22 @@
                             </div>
                             <div class="aa-prod-quantity">
                               <form action="">
-                                <input type="number">
+                                <select name="" id="">
+                                  <option value="0" selected="1">1</option>
+                                  <option value="1">2</option>
+                                  <option value="2">3</option>
+                                  <option value="3">4</option>
+                                  <option value="4">5</option>
+                                  <option value="5">6</option>
+                                  </select>
                               </form>
                               <p class="aa-prod-category">
                                 Category: <a href="#">Polo T-Shirt</a>
                               </p>
                             </div>
                             <div class="aa-prod-view-bottom">
-                              <a href="#" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                              <a href="#" class="aa-add-to-cart-btn">View Details</a>
+                              <a href="#" class="aa-add-to-cart-btn "><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                              <a href="{{ route('products.product-detail', ['id' => $product->id]) }}" class="aa-add-to-cart-btn">View Details</a>
                             </div>
                           </div>
                         </div>
@@ -315,6 +322,5 @@
     </div>
   </section>
   <!-- / Subscribe section -->
-
 
 </x-my-app-layout>
