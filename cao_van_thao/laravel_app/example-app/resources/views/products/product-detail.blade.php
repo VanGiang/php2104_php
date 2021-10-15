@@ -272,7 +272,7 @@
 													</div>
 													<div class="aa-prod-quantity">
 														<form action="">
-															<select name="quantity" id="quantity" class="product-quantity">
+															<select name="quantity" id="quantity1" class="product-quantity">
 																<option value="1" selected="1">1</option>
 																<option value="2">2</option>
 																<option value="3">3</option>
@@ -286,7 +286,7 @@
 														</p>
 													</div>
 													<div class="aa-prod-view-bottom">
-														<a href="#" class="aa-add-to-cart-btn cart" data-product_id="{{ $product->id }}"s><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+														<a href="#" class="aa-add-to-cart-btn cart" data-product_id="{{ $product->id }}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
 														<a href="{{ route('products.product-detail', ['id' => $product->id]) }}" class="aa-add-to-cart-btn">View Details</a>
 													</div>
 												</div>
@@ -330,11 +330,13 @@
 				// var addQuantity = parseInt($('#quantity').val());
 				// var newQuantity = currentQuantity + addQuantity;
 				//$('.cart-quantity').text(newQuantity);
+				
 				//auto_cart
 				//call ajax to server
 				//lay data
 				var product_id = $(this).data('product_id');
-				var quantity = $('.product-quantity').val();
+				//var quantity = $('.product-quantity').val();
+				var quantity = $(this).parent().parent().find('.product-quantity').val();
 
 				var url = "{{ route('order.save') }}";
 
@@ -380,20 +382,52 @@
 					e.preventDefault();
 
 					//var quantity = $('#quantity').val();
+
 					var currentQuantity = parseInt($('.cart-quantity').text());
 					var addQuantity = 1;
 					var newQuantity = currentQuantity + addQuantity;
 					console.log('newQuantity');
 					console.log(newQuantity);
-					$('.cart-quantity').text(newQuantity);
 
-					Swal.fire({
-							position: 'center',
-							icon: 'success',
-							title: 'add to cart success',
-							showConfirmButton: false,
-							timer: 1000
-					})
+					var product_id = $(this).data('product_id');
+
+					var url = "{{ route('order.save') }}";
+
+					$.ajax(url, {
+						type: 'POST',
+						data: {
+								product_id: product_id,
+								quantity: 1,
+						},
+						success: function (data) {
+							console.log('success');
+							
+							var objData = JSON.parse(data);
+							var newQuantity = Object.size(objData.cart);
+							console.log(objData);
+							console.log(newQuantity);
+							$('.cart-quantity').text(newQuantity);
+
+							Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Add to cart success!',
+									showConfirmButton: false,
+									timer: 1000
+								});
+						},
+						error: function () {
+								console.log('fail');
+
+								Swal.fire({
+										position: 'center',
+										icon: 'error',
+										title: 'Failed!',
+										showConfirmButton: false,
+										timer: 1000
+									});
+						}
+				});
 					//auto_cart
 			});
 		});

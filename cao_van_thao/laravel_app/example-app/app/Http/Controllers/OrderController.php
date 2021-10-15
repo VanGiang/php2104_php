@@ -37,7 +37,7 @@ class OrderController extends Controller
                     'quantity' => $request->quantity
                 ];
             }
-        } else {
+        }else {
             $data =[
                 'cart' => [
                     [
