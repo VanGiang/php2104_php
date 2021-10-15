@@ -7,50 +7,45 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    protected $productModel;
-    
-    public function __construct(Product $product)
-    {
-        $this->productModel = $product;
-    }
+	protected $productModel;
 
-    public function saveDataToSession(Request $request)
-    {
-        //session()->flush();
-        $productId = (int) $request->product_id;
-        $quantity = (int) $request->quantity;
-        $existFlg = false;
+	public function __construct(Product $product)
+	{
+			$this->productModel = $product;
+	}
 
-        if (session('cart')) {
-            $data['cart'] = session('cart');
+	public function saveDataToSession(Request $request)
+	{
+		$productId = (int) $request->product_id;
+		$quantity = (int) $request->quantity;
+		$existFlg = false;
 
-            foreach ($data['cart'] as $key => $value) {
-                if ($productId == $value['id']) {
-                    $data['cart'][$key]['quantity'] += $quantity;
-                    $existFlg = true;
-                }
-            }
+		if (session('cart')) {
+			$data['cart'] = session('cart');
 
-            if (!$existFlg) {
-                $data['cart'][] = [
-                    'id' => $request->product_id,
-                    'quantity' => $request->quantity
-                ];
-            }
-        }else {
-            $data =[
-                'cart' => [
-                    [
-                        'id' => $request->product_id,
-                        'quantity' => $request->quantity
-                    ],
-                ],
-            ];
-        }
-        session($data);
-        \Log::info($data);
-        return json_encode($data);
-
-    }
-
+			foreach ($data['cart'] as $key => $value) {
+				if ($productId == $value['id']) {
+					$data['cart'][$key]['quantity'] += $quantity;
+					$existFlg = true;
+				}
+			}
+			if (!$existFlg) {
+				$data['cart'][] = [
+					'id' => $request->product_id,
+					'quantity' => $request->quantity
+				];
+			}
+		} else {
+				$data = [
+					'cart' => [
+						[
+							'id' => $request->product_id,
+							'quantity' => $request->quantity
+						],
+					],
+				];
+		}
+		session($data);
+		return json_encode($data);
+	}
 }

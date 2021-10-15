@@ -1,6 +1,4 @@
 <x-my-app-layout>
-
-
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
    <img src="/themes/dailyshop/img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
