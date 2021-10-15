@@ -5,16 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
+use App\Models\ProductOrder;
 
 class OrderController extends Controller
 {
     protected $categoryModel;
     protected $productModel;
+    protected $orderModel;
+    protected $productOrderModel;
 
-    public function __construct(Category $category, Product $product)
-    {
+    public function __construct(
+        Category $category,
+        Product $product,
+        Order $order,
+        ProductOrder $productOrder
+    ) {
         $this->categoryModel = $category;
         $this->productModel = $product;
+        $this->orderModel = $order;
+        $this->productOrderModel = $productOrder;
     }
 
     public function saveDataToSession(Request $request)
@@ -127,5 +137,63 @@ class OrderController extends Controller
         }
 
         return json_encode(['status' => false]);
+    }
+
+    public function checkout()
+    {
+        $data = session('cart');
+
+        return view('orders.checkout');
+    }
+
+    public function purchase(Request $request)
+    {
+        $input = $request->only([
+            'name',
+            'phone',
+            'email',
+            'address',
+        ]);
+
+        $orderSession = session('cart');
+
+        $totalPrice = 100;
+        $code = 'JHGF100';
+
+        $orderData = [
+            'name' => $input['name'],
+            'phone' => $input['phone'],
+            // 'email' => $input['phone'],
+            'address' => $input['address'],
+            'total_price' => $totalPrice,
+            'code' => $code,
+        ];
+
+        try {
+            $order = $this->orderModel->create($orderData);
+
+            $orderId = $order->id;
+
+            $productOrderData = [];
+
+            foreach ($orderSession as $product) {
+                $productId = $product['id'];
+                $productRecord = $this->productModel->find($productId);
+
+                $productOrderData[] = [
+                    'order_id' => $orderId,
+                    'product_id' => $productId,
+                    'price' => (int) $productRecord->price,
+                    'sale_off' => $productRecord->sale_off,
+                    'quantity' => $product['quantity'],
+                ];
+            }
+
+            $this->productOrderModel->insert($productOrderData);
+        } catch (\Exception $e) {
+            \Log::error($e);
+        }
+
+        return json_encode(['status' => true]);
     }
 }

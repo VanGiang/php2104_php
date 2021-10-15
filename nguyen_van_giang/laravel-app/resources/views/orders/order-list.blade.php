@@ -83,27 +83,7 @@
           </div>
           <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
         </div>
-        <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-          <div class="cart-total mb-3">
-            <h3>Estimate shipping and tax</h3>
-            <p>Enter your destination to get a shipping estimate</p>
-            <form action="#" class="info">
-              <div class="form-group">
-                <label for="">Country</label>
-                <input type="text" class="form-control text-left px-3" placeholder="">
-              </div>
-              <div class="form-group">
-                <label for="country">State/Province</label>
-                <input type="text" class="form-control text-left px-3" placeholder="">
-              </div>
-              <div class="form-group">
-                <label for="country">Zip/Postal Code</label>
-                <input type="text" class="form-control text-left px-3" placeholder="">
-              </div>
-            </form>
-          </div>
-          <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
-        </div>
+
         <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
           <div class="cart-total mb-3">
             <h3>Cart Totals</h3>
@@ -125,7 +105,7 @@
               $<span id="total-final">{{ $total }}</span>
             </p>
           </div>
-          <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+          <p><a href="{{ route('order.checkout') }}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
         </div>
       </div>
     </div>
