@@ -44,17 +44,23 @@
                     <p>{{ Str::limit($product->description, 50) }}</p>
                   </td>
 
-                  <td class="price">${{ $product->price }}</td>
-                  <td class="sale-off">{{ $product->sale_off }}%</td>
+                  <td>$<span class="price">{{ $product->price }}</span></td>
+                  <td><span class="sale-off">{{ $product->sale_off }}</span>%</td>
 
                   <td class="quantity">
                     <div class="input-group mb-3">
-                      <input type="text" name="quantity" class="quantity form-control input-number" value="{{ $productData[$product->id] }}" min="1" max="100">
+                      <input type="text" name="quantity"
+                        class="product-quantity quantity form-control input-number"
+                        value="{{ $productData[$product->id] }}"
+                        min="1"
+                        max="100"
+                        data-product_id="{{ $product->id }}"
+                      >
                     </div>
                   </td>
 
-                  <td class="total">
-                    ${{ $product->price * $productData[$product->id] * ((100 - $product->sale_off) / 100) }}
+                  <td>
+                    $<span class="total">{{ $product->price * $productData[$product->id] * ((100 - $product->sale_off) / 100) }}</span>
                   </td>
                 </tr><!-- END TR-->
                 @endforeach
@@ -103,20 +109,20 @@
             <h3>Cart Totals</h3>
             <p class="d-flex">
               <span>Subtotal</span>
-              <span>${{ $subtotal }}</span>
+              $<span id="subtotal">{{ $subtotal }}</span>
             </p>
             <p class="d-flex">
               <span>Delivery</span>
-              <span>$0.00</span>
+              $<span id="delivery">0.00</span>
             </p>
             <p class="d-flex">
               <span>Discount</span>
-              <span>$0.00</span>
+              $<span id="discount">0.00</span>
             </p>
             <hr>
             <p class="d-flex total-price">
               <span>Total</span>
-              <span>${{ $total }}</span>
+              $<span id="total-final">{{ $total }}</span>
             </p>
           </div>
           <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -195,6 +201,67 @@
                     timer: 1500
                   });
                 }
+              });
+            }
+          });
+        });
+
+        $('.product-quantity').keyup(function() {
+          var newQuantity = $(this).val();
+
+          var trElement = $(this).closest('tr');
+          var url = "{{ route('order.update') }}";
+          var product_id = $(this).data('product_id');
+
+          var price = parseInt(trElement.find('.price').text());
+          var saleOff = parseInt(trElement.find('.sale-off').text());
+          var totalPrice = price * newQuantity * ((100 - saleOff) / 100);
+          totalPrice = Math.round(totalPrice * 100) / 100;
+
+          var totalElement = trElement.find('.total');
+
+          $.ajax(url, {
+            type: 'PUT',
+            data: {
+              product_id: product_id,
+              quantity: newQuantity,
+            },
+            success: function (data) {
+              console.log('success');
+
+              var objData = JSON.parse(data);
+              console.log(objData);
+
+              if (objData.status === false) {
+                location.reload();
+              }
+
+              totalElement.text(totalPrice);
+
+              var subtotal = 0;
+
+              $('.total').each(function() {
+                subtotal += parseFloat($(this).text());
+              });
+
+              subtotal = Math.round(subtotal * 100) / 100;
+
+              $('#subtotal').text(subtotal);
+
+              var totalFinal = subtotal + parseFloat($('#delivery').text()) - parseFloat($('#discount').text());
+              totalFinal = Math.round(totalFinal * 100) / 100;
+
+              $('#total-final').text(totalFinal);
+            },
+            error: function () {
+              console.log('fail');
+
+              Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Failed!',
+                showConfirmButton: false,
+                timer: 1500
               });
             }
           });

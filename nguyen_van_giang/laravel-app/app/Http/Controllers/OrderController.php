@@ -48,15 +48,6 @@ class OrderController extends Controller
                     ],
                 ],
             ];
-
-            $data = [
-                'cart' => [
-                    [
-                        'id' => $productId,
-                        'quantity' => $quantity
-                    ],
-                ],
-            ];
         }
 
         session($data);
@@ -115,5 +106,26 @@ class OrderController extends Controller
             'discount' => $discount,
             'total' => $total,
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        $productId = (int) $request->product_id;
+        $quantity = (int) $request->quantity;
+
+        if (session('cart')) {
+            $data['cart'] = session('cart');
+
+            foreach ($data['cart'] as $key => $value) {
+                if ($productId == $value['id']) {
+                    $data['cart'][$key]['quantity'] = $quantity;
+                }
+            }
+            session($data);
+
+            return json_encode($data);
+        }
+
+        return json_encode(['status' => false]);
     }
 }

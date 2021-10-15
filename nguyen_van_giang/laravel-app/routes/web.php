@@ -63,6 +63,7 @@ Route::get('/categories/{id}', [CategoryController::class, 'index'])->name('cate
 Route::post('add-to-cart', [OrderController::class, 'saveDataToSession'])->name('order.save');
 Route::get('order-list', [OrderController::class, 'orderList'])->name('order.list');
 Route::post('remove-product', [OrderController::class, 'removeDataFromSession'])->name('order.remove');
+Route::put('order-update', [OrderController::class, 'update'])->name('order.update');
 
 Route::get('/child-page', function() {
     return view('my-directory.child-page');
