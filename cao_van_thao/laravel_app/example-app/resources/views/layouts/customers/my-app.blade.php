@@ -284,7 +284,24 @@
   <!-- Custom js -->
   <script src="/themes/dailyShop/js/custom.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  @yield('script')
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
 
-  </body>
+        Object.size = function(obj) {
+          var size = 0,
+            key;
+          for (key in obj) {
+            if (obj.hasOwnProperty(key)) size++;
+          }
+          return size;
+      };
+    });
+  </script>
+  @yield('script')
+</body>
 </html>
