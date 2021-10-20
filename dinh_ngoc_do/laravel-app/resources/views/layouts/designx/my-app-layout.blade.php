@@ -4,6 +4,7 @@
     <title>Shoppers &mdash; Colorlib e-Commerce Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="/themes/shopper_fashion/fonts/icomoon/style.css">
@@ -47,12 +48,16 @@
                   <li><a href="#"><span class="icon icon-person"></span></a></li>
                   <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
-                    <a href="{{ route('shopper.cart') }}" class="site-cart">
+                    <a href="{{ route('order.list') }}" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
-                      <span class="count">0</span>
+                      <span class="count">{{ showCartQuantity() }}</span>
                     </a>
                   </li> 
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                  <li class="d-inline-block d-md-none ml-md-0">
+                    <a href="#" class="site-menu-toggle js-menu-toggle">
+                      <span class="icon-menu"></span>
+                    </a>
+                  </li>
                 </ul>
               </div> 
             </div>
@@ -161,9 +166,9 @@
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Contact Info</h3>
               <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
+                <li class="address">B15 Dai Kim, Hoang Mai, Ha Noi</li>
+                <li class="phone"><a href="tel://23923929210">+085 463 9588</a></li>
+                <li class="email">canhkhang836@gmail.com</li>
               </ul>
             </div>
 
@@ -199,8 +204,25 @@
   <script src="/themes/shopper_fashion/js/owl.carousel.min.js"></script>
   <script src="/themes/shopper_fashion/js/jquery.magnific-popup.min.js"></script>
   <script src="/themes/shopper_fashion/js/aos.js"></script>
-
   <script src="/themes/shopper_fashion/js/main.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      Object.size = function(obj) {
+        var size = 0,
+          key;
+        for (key in obj) {
+          if (obj.hasOwnProperty(key)) size++;
+        }
+        return size;
+      };
+    });
+  </script>
 
   @yield('script')
   </body>

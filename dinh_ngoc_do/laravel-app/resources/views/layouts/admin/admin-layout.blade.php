@@ -283,8 +283,8 @@
               <i class="nav-icon fas fa-tshirt"></i>
               <p>
                 Product
-                <i class="fas fa-angle-left right"></i>
-                <span class="right badge badge-danger">New</span>
+                <i class="fas fa-angle-left right"></i> 
+                <span class="badge badge-info right">100</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -292,7 +292,11 @@
                 <a href="{{ route('admin.products.create') }}" class="nav-link
                 @if (url()->current() == route('admin.products.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Product</p>
+                  <p>
+                    New Product
+                    <i class="fas fa-angle-left right"></i>
+                    <span class="right badge badge-danger">New</span>
+                  </p>
                 </a>
               </li>
               <li class="nav-item">
@@ -302,6 +306,13 @@
                   <p>List Product</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.products.history') }}" class="nav-link 
+                @if (url()->current() == route('admin.products.history')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>History</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -309,21 +320,42 @@
               <i class="nav-icon fas fa-box"></i>
               <p>
                 Category
-                <i class="fas fa-angle-left right"></i>
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Category</p>
+                  <p>
+                    New Category
+                    <i class="fas fa-angle-left right"></i>
+                    <span class="right badge badge-danger">New</span>
+                  </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Category</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-file-invoice-dollar"></i>
+              <p>
+                Order
+                <i class="fas fa-angle-left right"></i>
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.order.list') }}" class="nav-link 
+                @if (url()->current() == route('admin.order.list')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Order</p>
                 </a>
               </li>
             </ul>
@@ -411,6 +443,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/themes/admin/dist/js/pages/dashboard.js"></script>
 
+@yield('script-image-product')
 @yield('script-delete-alert')
 @yield('script-close-alert')
 </body>

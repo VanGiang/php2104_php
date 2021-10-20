@@ -1,13 +1,13 @@
 <x-my-app-layout>
-<div class="bg-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <a href="cart.html">Cart</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Checkout</strong></div>
-        </div>
+  <div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <a href="cart.html">Cart</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Checkout</strong></div>
       </div>
     </div>
+  </div>
 
-    <div class="site-section">
+  <div class="site-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-12">
@@ -24,43 +24,25 @@
                 <label for="c_country" class="text-black">Country <span class="text-danger">*</span></label>
                 <select id="c_country" class="form-control">
                   <option value="1">Select a country</option>    
-                  <option value="2">bangladesh</option>    
-                  <option value="3">Algeria</option>    
-                  <option value="4">Afghanistan</option>    
-                  <option value="5">Ghana</option>    
-                  <option value="6">Albania</option>    
-                  <option value="7">Bahrain</option>    
-                  <option value="8">Colombia</option>    
-                  <option value="9">Dominican Republic</option>    
+                  <option value="2">Ha Noi</option>    
+                  <option value="3">Ho Chi Minh</option>    
+                  <option value="4">Nha Trang</option>    
+                  <option value="4">Da Nang</option>    
                 </select>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6">
-                  <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_fname" name="c_fname">
-                </div>
-                <div class="col-md-6">
-                  <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_lname" name="c_lname">
-                </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <label for="c_companyname" class="text-black">Company Name </label>
-                  <input type="text" class="form-control" id="c_companyname" name="c_companyname">
+                  <label for="c_companyname" class="text-black">Your Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="name" name="">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
                   <label for="c_address" class="text-black">Address <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address">
+                  <input type="text" class="form-control" id="address" name="" placeholder="Your Address..">
                 </div>
-              </div>
-
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
               </div>
 
               <div class="form-group row">
@@ -77,11 +59,11 @@
               <div class="form-group row mb-5">
                 <div class="col-md-6">
                   <label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_email_address" name="c_email_address">
+                  <input type="text" class="form-control" id="email" name="email">
                 </div>
                 <div class="col-md-6">
                   <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number">
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number">
                 </div>
               </div>
 
@@ -91,94 +73,20 @@
                   <div class="py-2">
                     <p class="mb-3">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
                     <div class="form-group">
-                      <label for="c_account_password" class="text-black">Account Password</label>
-                      <input type="email" class="form-control" id="c_account_password" name="c_account_password" placeholder="">
+                      <label for="" class="text-black">Account Name</label>
+                      <input type="text" class="form-control" id="" name="" placeholder="Enter your account name...">
+                    </div>
+                    <div class="form-group">
+                      <label for="" class="text-black">Account Password</label>
+                      <input type="password" class="form-control" id="" name="" placeholder="Your password...">
                     </div>
                   </div>
                 </div>
               </div>
 
-
               <div class="form-group">
-                <label for="c_ship_different_address" class="text-black" data-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address"> Ship To A Different Address?</label>
-                <div class="collapse" id="ship_different_address">
-                  <div class="py-2">
-
-                    <div class="form-group">
-                      <label for="c_diff_country" class="text-black">Country <span class="text-danger">*</span></label>
-                      <select id="c_diff_country" class="form-control">
-                        <option value="1">Select a country</option>    
-                        <option value="2">bangladesh</option>    
-                        <option value="3">Algeria</option>    
-                        <option value="4">Afghanistan</option>    
-                        <option value="5">Ghana</option>    
-                        <option value="6">Albania</option>    
-                        <option value="7">Bahrain</option>    
-                        <option value="8">Colombia</option>    
-                        <option value="9">Dominican Republic</option>    
-                      </select>
-                    </div>
-
-
-                    <div class="form-group row">
-                      <div class="col-md-6">
-                        <label for="c_diff_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_fname" name="c_diff_fname">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="c_diff_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_lname" name="c_diff_lname">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-12">
-                        <label for="c_diff_companyname" class="text-black">Company Name </label>
-                        <input type="text" class="form-control" id="c_diff_companyname" name="c_diff_companyname">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-12">
-                        <label for="c_diff_address" class="text-black">Address <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_address" name="c_diff_address" placeholder="Street address">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-6">
-                        <label for="c_diff_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_state_country" name="c_diff_state_country">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="c_diff_postal_zip" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_postal_zip" name="c_diff_postal_zip">
-                      </div>
-                    </div>
-
-                    <div class="form-group row mb-5">
-                      <div class="col-md-6">
-                        <label for="c_diff_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_email_address" name="c_diff_email_address">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="c_diff_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_phone" name="c_diff_phone" placeholder="Phone Number">
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="c_order_notes" class="text-black">Order Notes</label>
-                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
+                <label for="" class="text-black">Order Notes</label>
+                <textarea name="" id="note" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
               </div>
 
             </div>
@@ -187,46 +95,49 @@
 
             <div class="row mb-5">
               <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black">Coupon Code</h2>
-                <div class="p-3 p-lg-5 border">
-                  
-                  <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
-                  <div class="input-group w-75">
-                    <input type="text" class="form-control" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary btn-sm" type="button" id="button-addon2">Apply</button>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            
-            <div class="row mb-5">
-              <div class="col-md-12">
                 <h2 class="h3 mb-3 text-black">Your Order</h2>
                 <div class="p-3 p-lg-5 border">
                   <table class="table site-block-order-table mb-5">
                     <thead>
                       <th>Product</th>
+                      <th>Price</th>
                       <th>Total</th>
                     </thead>
                     <tbody>
+                      @foreach ($products as $product)
                       <tr>
-                        <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-                        <td>$250.00</td>
+                        <td>{{ $product->name }} <strong class="mx-2">x</strong> {{ $productData[$product->id] }}</td>
+                        <td>${{ $product->price }}</td>
+                        <td>${{ $product->price * $productData[$product->id] }}</td>
                       </tr>
-                      <tr>
-                        <td>Polo Shirt <strong class="mx-2">x</strong>   1</td>
-                        <td>$100.00</td>
-                      </tr>
+                      @endforeach
                       <tr>
                         <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">$350.00</td>
+                        <td></td>
+                        <td class="text-black">${{ $subtotal }}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Discount</strong></td>
+                        <td></td>
+                        <td class="text-black">
+                          <span id="discount">{{ $discount }}</span>%
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Delivery</strong></td>
+                        <td></td>
+                        <td class="text-black">$
+                          <span id="delivery">{{ $delivery }}</span>
+                        </td>
                       </tr>
                       <tr>
                         <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
+                        <td></td>
+                        <td class="text-black font-weight-bold">
+                          <strong>$
+                            <span id="total">{{ $total }}</span>
+                          </strong>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -251,7 +162,7 @@
                     </div>
                   </div>
 
-                  <div class="border p-3 mb-5">
+                  <div class="border p-3 mb-3">
                     <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
 
                     <div class="collapse" id="collapsepaypal">
@@ -261,8 +172,18 @@
                     </div>
                   </div>
 
+                  <div class="border p-3 mb-5">
+                    <h3 class="h6 mb-0"><a id="cod" class="d-block" data-toggle="collapse" href="#collapsecod" role="button" aria-expanded="false" aria-controls="collapsecod">Ship COD</a></h3>
+
+                    <div class="collapse" id="collapsecod">
+                      <div class="py-2">
+                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="form-group">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
+                    <a href="" class="btn btn-primary btn-lg py-3 btn-block place-order">Place Order</a>
                   </div>
 
                 </div>
@@ -273,5 +194,51 @@
         </div>
         <!-- </form> -->
       </div>
-    </div>
+  </div>
+  @section('script')
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.place-order').click(function(e) {
+        e.preventDefault();
+
+        var name = $('#name').val();
+        var address = $('#address').val();
+        var email = $('#email').val();
+        var phone = $('#phone').val();
+        var note = $('#note').val();
+        var discount = $('#discount').text();
+        var delivery = $('#delivery').text();
+        var total_price = $('#total').text();
+        var payment = $('#cod').text(); 
+
+        var url = "{{ route('order.place') }}";
+
+        $.ajax(url, {
+          type: 'POST',
+          data: {
+            name: name,
+            address: address,
+            email: email,
+            phone: phone,
+            note: note,
+            discount: discount,
+            delivery: delivery,
+            total_price: total_price,
+            payment: payment,
+          },
+          success: function(data) {
+            console.log('success');
+
+            window.location.href = '/shopper_fashion/thankyou';
+          },
+          error: function(e) {
+            console.log('fail');
+
+            Swal.fire('Error, Some thing went wrong!', '', 'info')
+          }
+        });
+      });
+    });
+  </script>
+  @endsection
 </x-my-app-layout>

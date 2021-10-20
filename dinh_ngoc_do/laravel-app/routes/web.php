@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
-use Illuminate\Support\Facades\View;
 use App\Http\Controllers\ShopController;
 use App\Http\Middleware\Admin;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,13 +65,24 @@ Route::get('/username/{name?}', function (Request $request, $name = 'Guest') {
 //Prefix
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('products/history', [AdminProductController::class, 'history'])->name('products.history');
     Route::resource('products', AdminProductController::class);
+    Route::get('products/history', [AdminProductController::class, 'history'])->name('products.history');
+    Route::get('order/list', [AdminOrderController::class, 'index'])->name('order.list');
+
 });
 
-Route::get('/shopper_fashion/home', function() {
+Route::get('/shopper_fashion/home', function() {  
     return view('home-page');
 })->name('shopper.home'); 
+
+
+
+Route::post('order-save', [OrderController::class, 'saveProductsToSession'])->name('order.save');
+Route::get('order-list', [OrderController::class, 'orderList'])->name('order.list');
+Route::post('order-remove', [OrderController::class, 'removeDataFromSession'])->name('order.remove');
+Route::put('order-update', [OrderController::class, 'update'])->name('order.update');
+Route::get('order-checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+Route::post('order-place', [OrderController::class, 'orderPlace'])->name('order.place');
 
 Route::get('/shopper_fashion/shop/', [ShopController::class, 'shopIndex'])->name('shopper.shop');
 
@@ -82,10 +95,6 @@ Route::get('/shopper_fashion/shop-single', function () {
 Route::get('/shopper_fashion/cart', function () {
     return view('shopper-cart');
 })->name('shopper.cart');
-
-Route::get('/shopper_fashion/checkout', function () {
-    return view('shopper-checkout');
-});
 
 Route::get('/shopper_fashion/thankyou', function () {
     return view('shopper-thankyou');

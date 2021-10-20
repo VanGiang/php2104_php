@@ -3,10 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Str;
-use SebastianBergmann\Environment\Console;
 
-class ProductName implements Rule
+class ProductTitle implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,8 +25,8 @@ class ProductName implements Rule
      */
     public function passes($attribute, $value)
     {
-        //Check name if value is null 
-        return !Str::is($value, null);
+        preg_match('/[a-zA-Z\s]+/', $value, $matches);
+
     }
 
     /**
@@ -38,9 +36,6 @@ class ProductName implements Rule
      */
     public function message()
     {
-        $messages = [
-            'name.blank' => ':attribute cannot be blank.',
-        ];
-        
+        return 'OK';
     }
 }
