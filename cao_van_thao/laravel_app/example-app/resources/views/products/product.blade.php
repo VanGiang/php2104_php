@@ -53,8 +53,8 @@
 								@foreach ($products as $product)
 									<li>
 										<figure>
-											<a class="aa-product-img" href="{{ route('products.product-detail', ['id' => $product->id]) }}"><img src="{{ $product->image }}" alt="polo shirt img"></a>
-											<a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart "></span>Add To Cart</a>
+											<a class="aa-product-img" href="{{ route('products.product-detail', ['id' => $product->id]) }}"><img src="{{ showImageProduct($product->image) }}" alt="polo shirt img"></a>
+											<a class="aa-add-card-btn cartAuto" data-product_id="{{ $product->id }}" href="#"><span class="fa fa-shopping-cart "></span>Add To Cart</a>
 											<figcaption>
 												<h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
 												@if ($product->sale_off > 0)
@@ -142,13 +142,13 @@
                             </div>
                             <div class="aa-prod-quantity">
                               <form action="">
-                                <select name="" id="">
-                                  <option value="0" selected="1">1</option>
-                                  <option value="1">2</option>
-                                  <option value="2">3</option>
-                                  <option value="3">4</option>
-                                  <option value="4">5</option>
-                                  <option value="5">6</option>
+                                <select name="quantity" id="quantity1" class="product-quantity">
+                                  <option value="1" selected="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
                                   </select>
                               </form>
                               <p class="aa-prod-category">
@@ -156,7 +156,7 @@
                               </p>
                             </div>
                             <div class="aa-prod-view-bottom">
-                              <a href="#" class="aa-add-to-cart-btn "><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                              <a href="#" class="aa-add-to-cart-btn cart" data-product_id="{{ $product->id }}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                               <a href="{{ route('products.product-detail', ['id' => $product->id]) }}" class="aa-add-to-cart-btn">View Details</a>
                             </div>
                           </div>
@@ -214,7 +214,7 @@
                   <span id="skip-value-upper" class="example-val">70.00</span>
                   <button class="aa-filter-btn" type="submit">Filter</button>
                 </form>
-               </div>             
+              </div>             
 
             </div>
             <!-- single sidebar -->
@@ -254,7 +254,7 @@
                       <p>1 x $250</p>
                     </div>                    
                   </li>
-                   <li>
+                  <li>
                     <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
                     <div class="aa-cartbox-info">
                       <h4><a href="#">Product Name</a></h4>
@@ -320,5 +320,103 @@
     </div>
   </section>
   <!-- / Subscribe section -->
-
+  @section('script')
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.cart').click(function(e) {
+          e.preventDefault();
+    
+          //call ajax to server
+          //lay data
+          var product_id = $(this).data('product_id');
+          var quantity = $(this).parent().parent().find('.product-quantity').val();
+    
+          var url = "{{ route('order.save') }}";
+    
+          $.ajax(url, {
+              type: 'POST',
+              data: {
+                product_id: product_id,
+                quantity: quantity,
+              },
+              success: function (data) {
+                console.log('success');
+                
+                var objData = JSON.parse(data);
+                var newQuantity = Object.size(objData.cart);
+    
+                $('.cart-quantity').text(newQuantity);
+    
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Add to cart success!',
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+              },
+              error: function () {
+                console.log('fail');
+    
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Failed!',
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+              }
+          });
+        });
+        
+        $('.cartAuto').click(function(e) {
+            //auto_cart
+            e.preventDefault();
+    
+            var currentQuantity = parseInt($('.cart-quantity').text());
+            var addQuantity = 1;
+            var newQuantity = currentQuantity + addQuantity;
+    
+            var product_id = $(this).data('product_id');
+    
+            var url = "{{ route('order.save') }}";
+    
+            $.ajax(url, {
+              type: 'POST',
+              data: {
+                  product_id: product_id,
+                  quantity: 1,
+              },
+              success: function (data) {
+                console.log('success');
+                
+                var objData = JSON.parse(data);
+                var newQuantity = Object.size(objData.cart);
+                
+                $('.cart-quantity').text(newQuantity);
+    
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Add to cart success!',
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+              },
+              error: function () {
+                console.log('fail');
+    
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Failed!',
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+              }
+          });
+        });
+      });
+    </script>
+  @endsection
 </x-my-app-layout>

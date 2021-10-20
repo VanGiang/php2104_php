@@ -1,5 +1,4 @@
-<x-my-app-layout>
-    
+<x-my-app-layout>   
 <!-- product category -->
 <section id="aa-product-details">
 	<div class="container">
@@ -14,20 +13,20 @@
 										<div id="demo-1" class="simpleLens-gallery-container">
 											<div class="simpleLens-container">
 												<div class="simpleLens-big-image-container">
-													<a data-lens-image="{{ $product->image }}" class="simpleLens-lens-image">
-														<img src="{{ $product->image }}" class="simpleLens-big-image">
+													<a data-lens-image="{{ showImageProduct($product->image) }}" class="simpleLens-lens-image">
+														<img src="{{ showImageProduct($product->image) }}" class="simpleLens-big-image">
 													</a>
 												</div>
 											</div>
 											<div class="simpleLens-thumbnails-container">
-												<a data-big-image="{{ $product->image }}" data-lens-image="{{ $product->image }}" class="simpleLens-thumbnail-wrapper" href="#">
-													<img src="{{ $product->image }}" width="50px" height="50px">
+												<a data-big-image="{{ showImageProduct($product->image) }}" data-lens-image="{{ showImageProduct($product->image) }}" class="simpleLens-thumbnail-wrapper" href="#">
+													<img src="{{ showImageProduct($product->image) }}" width="50px" height="50px">
 												</a>                                    
-												<a data-big-image="{{ $product->image }}" data-lens-image="{{ $product->image }}" class="simpleLens-thumbnail-wrapper" href="#">
-													<img src="{{ $product->image }}" width="50px" height="50px">
+												<a data-big-image="{{ showImageProduct($product->image) }}" data-lens-image="{{ showImageProduct($product->image) }}" class="simpleLens-thumbnail-wrapper" href="#">
+													<img src="{{ showImageProduct($product->image) }}" width="50px" height="50px">
 												</a>
-												<a data-big-image="{{ $product->image }}" data-lens-image="{{ $product->image }}" class="simpleLens-thumbnail-wrapper" href="#">
-													<img src="{{ $product->image }}" width="50px" height="50px">
+												<a data-big-image="{{ showImageProduct($product->image) }}" data-lens-image="{{ showImageProduct($product->image) }}" class="simpleLens-thumbnail-wrapper" href="#">
+													<img src="{{ showImageProduct($product->image) }}" width="50px" height="50px">
 												</a>
 											</div>
 										</div>
@@ -186,7 +185,7 @@
 								<!-- start single product item -->
 								<li>
 									<figure>	
-										<a class="aa-product-img" href="#"><img src="{{ $product->image }}" alt="polo shirt img"></a>
+										<a class="aa-product-img" href="{{ route('products.product-detail', ['id' => $product->id]) }}"><img src="{{ showImageProduct($product->image) }}" alt="polo shirt img"></a>
 										<a class="aa-add-card-btn cartAuto" data-product_id="{{ $product->id }}" href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
 										<figcaption>
 										<h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
@@ -201,7 +200,7 @@
 									<div class="aa-product-hvr-content">
 										<a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
 										<a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-										<a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                            
+										<a href="{{ route('products.product-detail', ['id' => $product->id]) }}" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                            
 									</div>
 									<!-- product badge -->
 									@if ($product->sale_off > 0)
@@ -223,27 +222,27 @@
 															<div class="simpleLens-gallery-container" id="demo-1">
 																<div class="simpleLens-container">
 																	<div class="simpleLens-big-image-container">
-																		<a class="simpleLens-lens-image" data-lens-image="{{ $product->image }}">
-																			<img src="{{ $product->image }}" class="simpleLens-big-image">
+																		<a class="simpleLens-lens-image" data-lens-image="{{ showImageProduct($product->image) }}">
+																			<img src="{{ showImageProduct($product->image) }}" class="simpleLens-big-image">
 																		</a>
 																	</div>
 																</div>
 																<div class="simpleLens-thumbnails-container">
 																	<a href="#" class="simpleLens-thumbnail-wrapper"
-																		data-lens-image="{{ $product->image }}"
-																		data-big-image="{{ $product->image }}">
-																		<img src="{{ $product->image }}" width="50px" height="50px">
+																		data-lens-image="{{ showImageProduct($product->image) }}"
+																		data-big-image="{{ showImageProduct($product->image) }}">
+																		<img src="{{ showImageProduct($product->image) }}" width="50px" height="50px">
 																	</a>                                    
 																	<a href="#" class="simpleLens-thumbnail-wrapper"
-																		data-lens-image="{{ $product->image }}"
-																		data-big-image="{{ $product->image }}">
-																		<img src="{{ $product->image }}" width="50px" height="50px">
+																		data-lens-image="{{ showImageProduct($product->image) }}"
+																		data-big-image="{{ showImageProduct($product->image) }}">
+																		<img src="{{ showImageProduct($product->image) }}" width="50px" height="50px">
 																	</a>
 
 																	<a href="#" class="simpleLens-thumbnail-wrapper"
-																		data-lens-image="{{ $product->image }}"
-																		data-big-image="{{ $product->image }}">
-																		<img src="{{ $product->image }}" width="50px" height="50px">
+																		data-lens-image="{{ showImageProduct($product->image) }}"
+																		data-big-image="{{ showImageProduct($product->image) }}">
+																		<img src="{{ showImageProduct($product->image) }}" width="50px" height="50px">
 																	</a>
 																</div>
 															</div>
@@ -307,113 +306,97 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-		});
+		$('.cart').click(function(e) {
+			e.preventDefault();
 
-		Object.size = function(obj) {
-			var size = 0,
-				key;
-			for (key in obj) {
-				if (obj.hasOwnProperty(key)) size++;
-			}
-			return size;
-		};
-		$(document).ready(function() {
-			$('.cart').click(function(e) {
+			//call ajax to server
+			//lay data
+			var product_id = $(this).data('product_id');
+			var quantity = $(this).parent().parent().find('.product-quantity').val();
+
+			var url = "{{ route('order.save') }}";
+
+			$.ajax(url, {
+					type: 'POST',
+					data: {
+						product_id: product_id,
+						quantity: quantity,
+					},
+					success: function (data) {
+						console.log('success');
+						
+						var objData = JSON.parse(data);
+						var newQuantity = Object.size(objData.cart);
+
+						$('.cart-quantity').text(newQuantity);
+
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: 'Add to cart success!',
+							showConfirmButton: false,
+							timer: 1000
+						});
+					},
+					error: function () {
+						console.log('fail');
+
+						Swal.fire({
+							position: 'center',
+							icon: 'error',
+							title: 'Failed!',
+							showConfirmButton: false,
+							timer: 1000
+						});
+					}
+			});
+		});
+		
+		$('.cartAuto').click(function(e) {
+				//auto_cart
 				e.preventDefault();
 
-				//call ajax to server
-				//lay data
+				var currentQuantity = parseInt($('.cart-quantity').text());
+				var addQuantity = 1;
+				var newQuantity = currentQuantity + addQuantity;
+
 				var product_id = $(this).data('product_id');
-				var quantity = $(this).parent().parent().find('.product-quantity').val();
 
 				var url = "{{ route('order.save') }}";
 
 				$.ajax(url, {
-						type: 'POST',
-						data: {
+					type: 'POST',
+					data: {
 							product_id: product_id,
-							quantity: quantity,
-						},
-						success: function (data) {
-							console.log('success');
-							
-							var objData = JSON.parse(data);
-							var newQuantity = Object.size(objData.cart);
+							quantity: 1,
+					},
+					success: function (data) {
+						console.log('success');
+						
+						var objData = JSON.parse(data);
+						var newQuantity = Object.size(objData.cart);
+						
+						$('.cart-quantity').text(newQuantity);
 
-							$('.cart-quantity').text(newQuantity);
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: 'Add to cart success!',
+							showConfirmButton: false,
+							timer: 1000
+						});
+					},
+					error: function () {
+						console.log('fail');
 
-							Swal.fire({
-								position: 'center',
-								icon: 'success',
-								title: 'Add to cart success!',
-								showConfirmButton: false,
-								timer: 1000
-							});
-						},
-						error: function () {
-							console.log('fail');
-
-							Swal.fire({
-								position: 'center',
-								icon: 'error',
-								title: 'Failed!',
-								showConfirmButton: false,
-								timer: 1000
-							});
-						}
-				});
-			});
-			
-			$('.cartAuto').click(function(e) {
-					//auto_cart
-					e.preventDefault();
-
-					var currentQuantity = parseInt($('.cart-quantity').text());
-					var addQuantity = 1;
-					var newQuantity = currentQuantity + addQuantity;
-
-					var product_id = $(this).data('product_id');
-
-					var url = "{{ route('order.save') }}";
-
-					$.ajax(url, {
-						type: 'POST',
-						data: {
-								product_id: product_id,
-								quantity: 1,
-						},
-						success: function (data) {
-							console.log('success');
-							
-							var objData = JSON.parse(data);
-							var newQuantity = Object.size(objData.cart);
-							
-							$('.cart-quantity').text(newQuantity);
-
-							Swal.fire({
-								position: 'center',
-								icon: 'success',
-								title: 'Add to cart success!',
-								showConfirmButton: false,
-								timer: 1000
-							});
-						},
-						error: function () {
-							console.log('fail');
-
-							Swal.fire({
-								position: 'center',
-								icon: 'error',
-								title: 'Failed!',
-								showConfirmButton: false,
-								timer: 1000
-							});
-						}
-				});
+						Swal.fire({
+							position: 'center',
+							icon: 'error',
+							title: 'Failed!',
+							showConfirmButton: false,
+							timer: 1000
+						});
+					}
 			});
 		});
 	});
