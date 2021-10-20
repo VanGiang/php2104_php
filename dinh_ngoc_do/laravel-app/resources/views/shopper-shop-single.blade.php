@@ -15,10 +15,10 @@
           </div>
           <div class="col-md-6">
             <h2 class="text-black">{{ $product->name }}</h2>
-            <p>{{ $product->description }}</p>
+            <p>Description: {{ $product->description }}</p>
             <p>Color: </p>
-            <p>Quantity: </p>
-            <p>Category: </p>
+            <p>Quantity: {{ $product->quantity }}</p>
+            <p>Category: {{ $product->category->name }}</p>
             <p class="mb-4"></p>
             <p><strong class="text-primary h4">${{ $product->price }}</strong></p>
             <div class="mb-1 d-flex">
@@ -48,7 +48,10 @@
 
             </div>
             <p>
-              <a href="" class="buy-now btn btn-sm btn-primary add-to-card">Add To Cart</a>
+              <a href="" class="buy-now btn btn-sm btn-primary add-to-card" 
+                data-product_id="{{ $product->id }}">
+                Add To Cart
+              </a>
               <!-- <button type="button" class="btn btn-success toastrDefaultSuccess" style=""></button> -->
             </p>
 
@@ -74,7 +77,7 @@
                     <img src="{{ showProductImage($product->image) }}" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">{{ $product->name }}</a></h3>
+                    <h3><a href="{{ route('product.info', ['id' => $product->id]) }}">{{ $product->name }}</a></h3>
                     <p class="mb-0">{{ $product->title }}</p>
                     <p class="text-primary font-weight-bold">${{ $product->price }}</p>
                   </div>
@@ -150,14 +153,68 @@
     @section('script')
     <script type="text/javascript">
       $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        Object.size = function(obj) {
+          var size = 0,
+            key;
+          for (key in obj) {
+            if (obj.hasOwnProperty(key)) size++;
+          }
+          return size;
+        };
+
         $('.add-to-card').click(function(e) {
           e.preventDefault();
 
-          var currentQuantity = parseInt($('.count').text());
+          /* var currentQuantity = parseInt($('.count').text());
           var addMoreQuantity = parseInt($('#quantity').val());
-          var newQuantity = currentQuantity + addMoreQuantity;
+          var newQuantity = currentQuantity + addMoreQuantity; */
+     
+          //Ajax
+          var url = "{{ route('order.save') }}";
+          var product_id = $(this).data('product_id');
+          var quantity = $('#quantity').val();
+          
+          $.ajax(url, {
+            type: 'POST',
+            data: {
+              product_id: product_id,
+              quantity: quantity,
+            },
+            success: function (data) {
+              console.log('success');
 
-          $('.count').text(newQuantity);
+              var objData = JSON.parse(data);
+              var newQuantity = Object.size(objData.cart);
+              
+              $('.count').text(newQuantity);
+
+              //Alert add product to cart successfully
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'This product has been added to cart',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            },
+            error: function () {
+              console.log('fail');
+
+              Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Failed!',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }
+          });
         });
       });
     </script>
