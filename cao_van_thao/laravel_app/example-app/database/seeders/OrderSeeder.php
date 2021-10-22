@@ -27,7 +27,6 @@ class OrderSeeder extends Seeder
             $data[] = [
                 'name' => $faker->name,
                 'user_id' => $user->id,
-                'total_price' => rand(200, 500),
                 'address' => $faker->city,
             ];
         }

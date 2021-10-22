@@ -210,7 +210,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('adminproducts.index') }}" class="nav-link active">
+            <a href="{{ route('adminproducts.index') }}" class="nav-link 
+              @if (url()->current() == route('adminproducts.index'))
+                active
+              @endif ">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 PRODUCT
@@ -234,6 +237,31 @@
                 @endif ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>create</p>
+                </a>
+              </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{{ route('adminorder.index') }}" class="nav-link active
+                @if (url()->current() == route('adminorder.index'))
+                  active
+                @endif ">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                ORDER
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('adminorder.index') }}" 
+                  class="nav-link @if (url()->current() == route('adminorder.index'))
+                    active
+                  @endif ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List</p>
                 </a>
               </li>
         </ul>

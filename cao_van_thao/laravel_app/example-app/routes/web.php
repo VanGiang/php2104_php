@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\OrderController;
 
 /*
@@ -59,6 +60,7 @@ Route::name('admin')->prefix('admin')->middleware(['auth', 'admin'])->group(func
     // });
 
     Route::resource('products', AdminProductController::class);
+    Route::resource('order', AdminOrderController::class);
 });
 
 Route::get('/php', function() {
@@ -84,11 +86,18 @@ Route::get('/productsdetail/{id}', [ProductDetailController::class, 'ProductDeta
 
 Route::get('/categories/{id}', [CategoryController::class, 'categories'])->name('category.show');
 
+
 route::post('/orders', [OrderController::class, 'saveDataToSession'])->name('order.save');
 
 route::get('/order-list', [OrderController::class, 'orderList'])->name('order.list');
 
 route::post('/delete-product', [OrderController::class, 'removeProductFromSesson'])->name('order.remove');
+
+route::put('/update-order-number', [OrderController::class, 'updateNumder'])->name('order.updateNumber');
+
+route::get('/checkout', [OrderController::class, 'checkout'])->name('order.chekout');
+
+route::post('/checkout-billing', [OrderController::class, 'checkoutBilling'])->name('order.checkoutBilling');
 
 Route::get('/child-page', function() {
     return view('my-directory.child-page');

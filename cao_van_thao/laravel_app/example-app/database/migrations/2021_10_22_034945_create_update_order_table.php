@@ -1,0 +1,54 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateUpdateOrderTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->bigInteger('user_id')->nullable()->change();
+           // $table->string('phone')->nullable();
+            $table->renameColumn('total_price', 'phone');
+            $table->string('email')->nullable();
+            $table->text('city')->nullable();
+            $table->string('appartment')->nullable();
+            $table->text('district')->nullable();
+            $table->float('toTalFinal')->nullable();
+            $table->float('tax')->nullable();
+            $table->float('toTalFinalCheckout')->nullable();
+            $table->string('couponCode')->nullable();
+            $table->boolean('status')->nullable()->default(1);
+
+        });
+    }
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn([
+                'email',
+                'phone',
+                'city',
+                'appartment',
+                'district',
+                'toTalFinal',
+                'tax',
+                'toTalFinalCheckout',
+                'couponCode',
+                'status'
+            ]);
+        });
+    }
+}
