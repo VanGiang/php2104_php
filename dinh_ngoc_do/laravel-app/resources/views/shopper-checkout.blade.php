@@ -183,7 +183,7 @@
                   </div>
 
                   <div class="form-group">
-                    <a href="" class="btn btn-primary btn-lg py-3 btn-block place-order">Place Order</a>
+                    <a href="{{ route('order.send-mail') }}" class="btn btn-primary btn-lg py-3 btn-block place-order">Place Order</a>
                   </div>
 
                 </div>
@@ -212,6 +212,29 @@
         var payment = $('#cod').text(); 
 
         var url = "{{ route('order.place') }}";
+
+        let timerInterval
+        Swal.fire({
+          title: 'Your order has been sent',
+          html: 'Your order are being processed.',
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft()
+            }, 100)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+          }
+        })
 
         $.ajax(url, {
           type: 'POST',

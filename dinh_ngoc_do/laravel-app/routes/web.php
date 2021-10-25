@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
@@ -67,8 +68,15 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(fun
 
     Route::resource('products', AdminProductController::class);
     Route::get('products/history', [AdminProductController::class, 'history'])->name('products.history');
+
     Route::get('order/list', [AdminOrderController::class, 'index'])->name('order.list');
 
+    Route::get('category/index', [AdminCategoryController::class, 'index'])->name('category.index');
+    Route::get('category/create', [AdminCategoryController::class, 'create'])->name('category.create');
+    Route::post('category/store', [AdminCategoryController::class, 'store'])->name('category.store');
+    Route::get('category/edit/{id}',[AdminCategoryController::class, 'edit'])->name('category.edit');
+    Route::put('category/update{id}', [AdminCategoryController::class, 'update'])->name('category.update');
+    Route::delete('category/delete/{id}', [AdminCategoryController::class, 'destroy'])->name('category.destroy');
 });
 
 Route::get('/shopper_fashion/home', function() {  
@@ -83,6 +91,7 @@ Route::post('order-remove', [OrderController::class, 'removeDataFromSession'])->
 Route::put('order-update', [OrderController::class, 'update'])->name('order.update');
 Route::get('order-checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 Route::post('order-place', [OrderController::class, 'orderPlace'])->name('order.place');
+Route::post('order-send-mail', [OrderController::class, 'sendMail'])->name('order.send-mail');
 
 Route::get('/shopper_fashion/shop/', [ShopController::class, 'shopIndex'])->name('shopper.shop');
 
