@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrdersProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\orderShipped;
 
 
 class OrderController extends Controller
@@ -191,6 +193,8 @@ class OrderController extends Controller
 			'toTalFinalCheckout' => $input['toTalFinalCheckout'],
 		];
 		try {
+			\DB::beginTransaction();
+
 			$order = $this->orderModel->create($data);
 
 			$orderId = $order->id;
@@ -212,7 +216,14 @@ class OrderController extends Controller
 			session()->flush();
 		} catch (\Exception $e) {
 			\Log::error($e);
+
+			\DB::rollBack();
 		}
+		\DB::commit();
+
+		//send mail
+		Mail::to('nntt2896@gmail.com')->send(new orderShipped($order));
+
 		return json_encode(['status' => true]);
 	}
 }
