@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderBillMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Mail\OrderShipped;
 
 class OrderController extends Controller
 {
@@ -200,6 +203,7 @@ class OrderController extends Controller
         ];
 
         try {
+            \DB::beginTransaction();
             $order = $this->orderModel->create($orderData);
 
             $orderId = $order->id;
@@ -220,9 +224,20 @@ class OrderController extends Controller
 
             $this->orderProductModel->insert($productOrderData);
 
-            session()->flush();
         } catch (\Exception $e) {
             \Log::error($e);
+
+            \DB::rollBack();
         }
+        \DB::commit();
+
+        //Clear cart after place out
+        /* session()->forget('cart'); */
+
+        //Send an mail about order info
+        Mail::to($order->email)->send(new OrderBillMail($order));
+
+        return json_encode(['status' => true]);
     }
+
 }

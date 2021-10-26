@@ -279,7 +279,7 @@
             </ul>
           </li>
           <li class="nav-item menu-open">
-            <a href="" class="nav-link active">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-tshirt"></i>
               <p>
                 Product
@@ -294,8 +294,6 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     New Product
-                    <i class="fas fa-angle-left right"></i>
-                    <span class="right badge badge-danger">New</span>
                   </p>
                 </a>
               </li>
@@ -315,26 +313,27 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-box"></i>
               <p>
                 Category
+                <i class="fas fa-angle-left right"></i> 
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="{{ route('admin.category.create') }}" class="nav-link
+                @if (url()->current() == route('admin.category.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     New Category
-                    <i class="fas fa-angle-left right"></i>
-                    <span class="right badge badge-danger">New</span>
                   </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="{{ route('admin.category.index') }}" class="nav-link
+                @if (url()->current() == route('admin.category.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Category</p>
                 </a>
@@ -443,7 +442,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/themes/admin/dist/js/pages/dashboard.js"></script>
 
-@yield('script-image-product')
+@yield('script-image-name')
 @yield('script-delete-alert')
 @yield('script-close-alert')
 </body>

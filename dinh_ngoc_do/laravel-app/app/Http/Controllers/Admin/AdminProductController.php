@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Routing\ResourceRegistrar;
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\FormProductRequest;
 
 class AdminProductController extends Controller
 {
@@ -50,10 +50,10 @@ class AdminProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param App\Http\Requests\StoreProductRequest  $request
+     * @param App\Http\Requests\FormProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(FormProductRequest $request)
     {
         $data = $request->only([
             'category_id',
@@ -65,6 +65,7 @@ class AdminProductController extends Controller
             'is_public',
         ]);
 
+
         $data['category_id'] = (int) $data['category_id'];
         $data['is_public'] = isset($data['is_public']) ? (int) $data['is_public'] : 0;
         $data['user_id'] = auth()->id();
@@ -72,13 +73,15 @@ class AdminProductController extends Controller
        /*  dd($data); */
 
         try {
-            $file = $request->file('image')->validated();
+            $file = $request->file('image');
 
             if ($file) {
                 $file->store('public/products');
                 $data['image'] = $file->hashName();
                 /* dd($data); */
             }
+
+            /* dd($file); */
 
             $product = $this->modelProduct->create($data);
             $msg = 'Create Product Successfully';
@@ -154,6 +157,14 @@ class AdminProductController extends Controller
         /* dd($data); */
 
         try {
+            $file = $request->file('image');
+
+            if ($file) {
+                $file->store('public/products');
+                $data['image'] = $file->hashName();
+                /* dd($data); */
+            }
+            
             $product = $this->modelProduct->findOrFail($id)->update($data);
             $msg = 'Update Product Successfully';
 
