@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\CategoriesController as CategoriesController;
 use App\Http\Controllers\OrderController;
 
 /*
@@ -61,6 +62,7 @@ Route::name('admin')->prefix('admin')->middleware(['auth', 'admin'])->group(func
 
     Route::resource('products', AdminProductController::class);
     Route::resource('order', AdminOrderController::class);
+    Route::resource('categories', CategoriesController::class);
 });
 
 Route::get('/php', function() {
