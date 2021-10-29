@@ -13,6 +13,7 @@ class Order extends Model
         'name',
         'phone',
         'email',
+        'email',
         'address',
         'total_price',
         'code',
@@ -23,5 +24,10 @@ class Order extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_orders');
+    }
+
+    public function productOrders()
+    {
+        return $this->hasMany(ProductOrder::class);
     }
 }

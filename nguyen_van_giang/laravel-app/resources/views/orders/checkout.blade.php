@@ -191,7 +191,7 @@
           // var product_id = $(this).data('product_id');
           var name = 'name',
             phone = 'phone',
-            email = 'email',
+            email = 'giangnv91@gmail.com',
             address = 'address';
 
           var url = "{{ route('order.purchase') }}";

@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\ProductOrder;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
 
 class OrderController extends Controller
 {
@@ -163,18 +165,21 @@ class OrderController extends Controller
         $orderData = [
             'name' => $input['name'],
             'phone' => $input['phone'],
-            // 'email' => $input['phone'],
+            'email' => $input['email'],
             'address' => $input['address'],
             'total_price' => $totalPrice,
             'code' => $code,
         ];
 
         try {
+            \DB::beginTransaction();
             $order = $this->orderModel->create($orderData);
 
             $orderId = $order->id;
 
             $productOrderData = [];
+
+            $productQuantity = [];
 
             foreach ($orderSession as $product) {
                 $productId = $product['id'];
@@ -187,12 +192,22 @@ class OrderController extends Controller
                     'sale_off' => $productRecord->sale_off,
                     'quantity' => $product['quantity'],
                 ];
+
+                $productQuantity[$productId] = $product['quantity'];
             }
 
             $this->productOrderModel->insert($productOrderData);
         } catch (\Exception $e) {
             \Log::error($e);
+
+            \DB::rollBack();
         }
+
+        \DB::commit();
+
+        session()->forget('cart');
+
+        Mail::to('giangnv91@gmail.com')->send(new OrderShipped($order, $productQuantity));
 
         return json_encode(['status' => true]);
     }
