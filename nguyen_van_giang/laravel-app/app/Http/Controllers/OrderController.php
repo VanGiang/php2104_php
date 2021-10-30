@@ -9,6 +9,8 @@ use App\Models\Order;
 use App\Models\ProductOrder;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderShipped;
+use App\Exports\OrdersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -210,5 +212,10 @@ class OrderController extends Controller
         Mail::to('giangnv91@gmail.com')->send(new OrderShipped($order, $productQuantity));
 
         return json_encode(['status' => true]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new OrdersExport, 'orders.xlsx');
     }
 }

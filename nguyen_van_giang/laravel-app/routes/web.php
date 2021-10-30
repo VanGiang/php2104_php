@@ -8,6 +8,8 @@ use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('products', AdminProductController::class);
+
+    Route::get('orders', [AdminOrderController::class, 'index'])->name('order.index');
 });
 
 Route::get('/home-page', [HomeController::class, 'index'])->name('home-page');
@@ -66,6 +70,8 @@ Route::post('remove-product', [OrderController::class, 'removeDataFromSession'])
 Route::put('order-update', [OrderController::class, 'update'])->name('order.update');
 Route::get('checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 Route::post('purchase', [OrderController::class, 'purchase'])->name('order.purchase');
+
+Route::get('order-export', [OrderController::class, 'export'])->name('order.export');
 
 Route::get('/child-page', function() {
     return view('my-directory.child-page');
