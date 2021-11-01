@@ -33,31 +33,33 @@ class OrderController
 
     public function index()
     {
-        $orders = $this->orderModel->with('productOrders')->where('created_at', '29')->get();
-        $data = [];
+        $orderReport = $this->orderReport->paginate(10);
 
-        foreach ($orders as $order) {
-            $day = $order->created_at->format('d-m-Y');
+        // $orders = $this->orderModel->with('productOrders')->where('created_at', '29')->get();
+        // $data = [];
 
-            if (isset($data[$day])) {
-                $orderQuantity++;
-                $totalPrice += $order->total_price;
-                $productQuantity += $order->productOrders->sum('quantity');
-            } else {
-                $orderQuantity = 1;
-                $totalPrice = $order->total_price;
-                $productQuantity = $order->productOrders->sum('quantity');
-            }
+        // foreach ($orders as $order) {
+        //     $day = $order->created_at->format('d-m-Y');
 
-            $data[$day] = [
-                'day' => $day,
-                'order_quantity' => $orderQuantity,
-                'total_price' => $totalPrice,
-                'product_quantity' => $productQuantity
-            ];
-        }
+        //     if (isset($data[$day])) {
+        //         $orderQuantity++;
+        //         $totalPrice += $order->total_price;
+        //         $productQuantity += $order->productOrders->sum('quantity');
+        //     } else {
+        //         $orderQuantity = 1;
+        //         $totalPrice = $order->total_price;
+        //         $productQuantity = $order->productOrders->sum('quantity');
+        //     }
 
-        dd($data);
+        //     $data[$day] = [
+        //         'day' => $day,
+        //         'order_quantity' => $orderQuantity,
+        //         'total_price' => $totalPrice,
+        //         'product_quantity' => $productQuantity
+        //     ];
+        // }
+
+        // dd($data);
 
         return view('admin.orders.index');
     }
