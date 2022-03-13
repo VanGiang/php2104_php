@@ -1,0 +1,22 @@
+*{
+    margin: auto;
+    padding: 0px;
+    text-align: center;
+}
+.content{
+    margin: 20px auto;
+    width: 600px;
+    padding: 10px;
+    height: 150px;
+    text-align: center;
+    color: brown;
+    border: 1px solid #333;
+}
+form{
+    width: 220px;
+    padding: 10px;
+    
+}
+form select,input{
+    margin:5px ;
+}
